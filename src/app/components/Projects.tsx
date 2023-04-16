@@ -2,6 +2,8 @@ import { projects } from "@/data";
 import { getGithubProfileUrl } from "@/utils";
 
 import SectionTitle from "./SectionTitle";
+import Tag from "./Tag";
+import ExternalLink from "./ExternalLink";
 
 function Projects() {
   return (
@@ -22,36 +24,24 @@ function Projects() {
 
             <div className="mt-2 md:mt-4 flex flex-wrap gap-2">
               {project.stack &&
-                project.stack.split(",").map((t, jdx) => (
-                  <span
-                    key={jdx}
-                    className="px-1.5 py-1 md:px-2 md:py-1.5 bg-dracula-dark-600 rounded text-xs text-white tracking-wide font-normal"
-                  >
-                    {t}
-                  </span>
-                ))}
+                project.stack
+                  .split(",")
+                  .map((tag, jdx) => <Tag key={jdx} tag={tag} />)}
             </div>
 
             <div className="mt-2 md:mt-4 flex items-center space-x-3">
               {project.demoUrl && (
-                <a
-                  target="_blank"
-                  rel="noopener norefferer"
-                  className="text-gray-200 underline text-xs md:text-sm font-medium cursor-pointer"
-                  href={project.demoUrl}
-                >
-                  Visit
-                </a>
+                <ExternalLink href={project.demoUrl}>Visit</ExternalLink>
+              )}
+              {project.demoUrl && project?.repoName && (
+                <span className="mr-1 md:mx-2 inline-block top-1/2 transform -translate-y-1/2 h-1 w-1 rounded-full bg-gray-400"></span>
               )}
               {project?.repoName && (
-                <a
-                  target="_blank"
-                  rel="noopener norefferer"
-                  className="text-gray-200 underline  text-xs md:text-sm font-medium cursor-pointer"
+                <ExternalLink
                   href={`${getGithubProfileUrl()}${project.repoName}`}
                 >
                   View Code
-                </a>
+                </ExternalLink>
               )}
             </div>
           </div>

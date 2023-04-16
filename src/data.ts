@@ -1,3 +1,7 @@
+export const twitterProfileURL = `https://twitter.com/Prateek88900`;
+export const githubProfileURL = `https://github.com/pratikmane1299/`;
+export const email = 'pratik.mane1299@gmail.com';
+
 export const navLinks = [
   {
     href: "/",
@@ -24,7 +28,7 @@ export const work = [
     org: "MakeStories",
     start: "04-01-2022",
     present: true,
-    orgUrl: "www.makestories.io",
+    orgUrl: "https://www.makestories.io",
   },
   {
     title: "Frontend Engineer",
@@ -33,7 +37,7 @@ export const work = [
     present: false,
     end: "03-31-2022",
     start: "09-01-2021",
-    orgUrl: "www.news18.com",
+    orgUrl: "https://www.news18.com",
   },
   {
     title: "Software Developer",

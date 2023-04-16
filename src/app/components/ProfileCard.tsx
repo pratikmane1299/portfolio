@@ -1,5 +1,7 @@
 import { Raleway } from "next/font/google";
 
+import { email, githubProfileURL, twitterProfileURL } from "@/data";
+
 import Inbox from "./Inbox";
 import TwitterIcon from "./Twitter";
 import GithubIcon from "./Github";
@@ -30,13 +32,27 @@ function ProfileCard() {
 
       {/* social links */}
       <div className="mt-10 w-full flex items-center space-x-4">
-        <a className="p-1 bg-gray-600 rounded-md cursor-pointer hover:opacity-90">
+        <a
+          href={`mailto:${email}`}
+          rel="noopener noreferrer"
+          className="p-1 bg-gray-600 rounded-md cursor-pointer hover:opacity-90"
+        >
           <Inbox />
         </a>
-        <a className="p-1 bg-blue-400 rounded-md cursor-pointer hover:opacity-9">
+        <a
+          href={twitterProfileURL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-1 bg-blue-400 rounded-md cursor-pointer hover:opacity-9"
+        >
           <TwitterIcon />
         </a>
-        <a className="p-1 bg-gray-600 rounded-md cursor-pointer hover:opacity-90">
+        <a
+          href={githubProfileURL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-1 bg-gray-600 rounded-md cursor-pointer hover:opacity-90"
+        >
           <GithubIcon />
         </a>
       </div>

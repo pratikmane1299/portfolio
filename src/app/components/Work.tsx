@@ -2,6 +2,7 @@ import { calculateExperience, formatExperience } from "@/utils";
 import { work } from "@/data";
 
 import SectionTitle from "./SectionTitle";
+import ExternalLink from "./ExternalLink";
 
 function Work() {
   return (
@@ -34,20 +35,20 @@ function Work() {
                   {exp.title}
                 </h5>
                 <div className="flex flex-col md:flex-row md:items-center">
-                  <a
-                    target="_blank"
-                    rel="noopener norefferer"
+                  <ExternalLink
                     href={exp.orgUrl}
-                    className="mb-2 md:mb-0 inline-block w-fit text-sm font-medium text-dracula-pink-400 border-b border-transparent hover:border-dracula-pink-400"
+                    className="mb-2 md:mb-0 inline-block w-fit "
                   >
                     {exp.org}
-                  </a>
-									<div className="flex items-center text-xs">
-										<span className="mr-1 md:mx-2 inline-block top-1/2 transform -translate-y-1/2 h-1 w-1 rounded-full bg-gray-400"></span>
-										<span>Mumbai, India</span>
-									</div>
+                  </ExternalLink>
+                  <div className="flex items-center text-xs">
+                    <span className="mr-1 md:mx-2 inline-block top-1/2 transform -translate-y-1/2 h-1 w-1 rounded-full bg-gray-400"></span>
+                    <span>Mumbai, India</span>
+                  </div>
                 </div>
-								<p className="mt-2 text-gray-300 text-xs md:text-sm font-medium tracking-wide leading-6">{exp.description}</p>
+                <p className="mt-2 text-gray-300 text-xs md:text-sm font-medium tracking-wide leading-6">
+                  {exp.description}
+                </p>
               </div>
             </div>
           </div>
