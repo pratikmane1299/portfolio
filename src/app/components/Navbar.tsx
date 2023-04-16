@@ -37,6 +37,13 @@ function Navbar() {
               </Link>
             </li>
           ))}
+          <li
+            className={`p-2 text-sm tracking-wide font-medium rounded-md cursor-pointer transition-colors duration-500 ease-in-out text-dracula-darker-100 hover:text-dracula-dark-50 hover:underline hover:bg-dracula-darker-800`}
+          >
+            <Link target="_blank" href={"/resume.pdf"}>
+              Resume
+            </Link>
+          </li>
         </ul>
 
         <button
@@ -86,7 +93,7 @@ function Navbar() {
                 <li key={idx} className="w-full px-4 py-3">
                   <Link
                     href={href}
-                    className={`text-xs font-medium tracking-wide leading-6 ${
+                    className={`w-full text-xs font-medium tracking-wide leading-6 ${
                       activePage === href
                         ? "text-dracula-dark-50"
                         : "text-dracula-darker-100 hover:text-dracula-dark-50"
@@ -97,6 +104,16 @@ function Navbar() {
                   </Link>
                 </li>
               ))}
+              <li className="w-full px-4 py-3">
+                <Link
+                  href={"/resume.pdf"}
+									target="_blank"
+                  className={`w-full text-xs font-medium tracking-wide leading-6 text-dracula-darker-100 hover:text-dracula-dark-50`}
+                  onClick={() => toggleNav(false)}
+                >
+                  Resume
+                </Link>
+              </li>
             </ul>
           </div>
         </>

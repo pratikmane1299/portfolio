@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { bio, jobTitle, name } from "@/data";
+import { bio, jobTitle, name, url } from "@/data";
 import "./globals.css";
 
 const description = `${jobTitle} ${bio}`;
@@ -9,12 +9,17 @@ export const metadata: Metadata = {
   title: name,
   description,
   themeColor: "#fd55b6",
+  metadataBase: new URL(`${url}`),
+  alternates: {
+    canonical: "/",
+  },
+  manifest: `${url}/site.webmanifest`,
   twitter: {
     card: "summary_large_image",
     creator: "@Prateek88900",
     title: name,
     description,
-    site: "",
+    site: url,
   },
   openGraph: {
     title: name,
@@ -22,7 +27,7 @@ export const metadata: Metadata = {
     siteName: "Pratik Mane",
     locale: "en-US",
     type: "website",
-    url: "",
+    url: url,
   },
 };
 
