@@ -1,6 +1,6 @@
 import { Raleway } from "next/font/google";
 
-import { email, githubProfileURL, twitterProfileURL } from "@/data";
+import { bio, email, githubProfileURL, jobTitle, name, twitterProfileURL } from "@/data";
 
 import Inbox from "./Inbox";
 import TwitterIcon from "./Twitter";
@@ -16,18 +16,14 @@ function ProfileCard() {
           Hey there, I'm
         </span>
         <span className="text-xl md:text-3xl px-2 block bg-dracula-pink-400 w-fit text-white">
-          Pratik Mane
+          {name}
         </span>
       </h1>
       <p className="block text-xs md:text-base font-medium tracking-wider leading-7">
-        I'm a
-        <span className="inline-block mx-2 border-b border-dracula-pink-400">
-          Software Engineer
+        <span className="inline-block mr-2 border-b border-dracula-pink-400">
+          {jobTitle}
         </span>
-        at MakeStories, Tech Enthusiast and Football fan. dkjflksdjlfsd fjds
-        l;f;dsf;ds fsdjf ldjsklf klsdjflkj sklfjsjdfkl jsklfjskld jfklsdjfkljsdk
-        lfsd f sdjflk sd klfsd;f j;dsfdsf kjsdklfklsd jfkljsdklfj klsdjfkljs
-        dklfjsdkfj kdsjfkljsd fjlsdf s df sdlf sd f sdlf sflsf
+        {bio}
       </p>
 
       {/* social links */}
@@ -35,7 +31,7 @@ function ProfileCard() {
         <a
           href={`mailto:${email}`}
           rel="noopener noreferrer"
-          className="p-1 bg-gray-600 rounded-md cursor-pointer hover:opacity-90"
+          className="p-1 md:p-2 bg-gray-600 rounded md:rounded-md cursor-pointer hover:opacity-90"
         >
           <Inbox />
         </a>
@@ -43,7 +39,7 @@ function ProfileCard() {
           href={twitterProfileURL}
           target="_blank"
           rel="noopener noreferrer"
-          className="p-1 bg-blue-400 rounded-md cursor-pointer hover:opacity-9"
+          className="p-1 md:p-2 bg-blue-400 rounded md:rounded-md cursor-pointer hover:opacity-90"
         >
           <TwitterIcon />
         </a>
@@ -51,7 +47,7 @@ function ProfileCard() {
           href={githubProfileURL}
           target="_blank"
           rel="noopener noreferrer"
-          className="p-1 bg-gray-600 rounded-md cursor-pointer hover:opacity-90"
+          className="p-1 md:p-2 bg-gray-600 rounded md:rounded-md cursor-pointer hover:opacity-90"
         >
           <GithubIcon />
         </a>

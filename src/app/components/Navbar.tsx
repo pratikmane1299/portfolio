@@ -34,7 +34,7 @@ function Navbar() {
 
         <button
           type="button"
-          className="md:hidden p-2 rounded-md bg-dracula-darker-800 outline-none hover:opacity-90 focus:ring-1 focus:ring-offset-1 focus:ring-dracula-darker-800"
+          className="md:hidden p-1 md:p-2 rounded lg:rounded-md bg-dracula-darker-800 outline-none hover:opacity-90 focus:ring-1 focus:ring-offset-1 focus:ring-dracula-darker-800"
           onClick={() => toggleNav((prev) => !prev)}
         >
           {isVisible ? (

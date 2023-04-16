@@ -1,6 +1,10 @@
 export const twitterProfileURL = `https://twitter.com/Prateek88900`;
 export const githubProfileURL = `https://github.com/pratikmane1299/`;
 export const email = 'pratik.mane1299@gmail.com';
+export const name = 'Pratik Mane';
+export const jobTitle = "Software Engineer";
+export const bio = `at MakeStories | Football fan | Tech enthusiast | Building innovative
+software solutions | Committed to excellence & continuous learning.`;
 
 export const navLinks = [
   {
@@ -32,7 +36,8 @@ export const work = [
   },
   {
     title: "Frontend Engineer",
-    description: "Building no code & low code saas products.",
+    description:
+      "As a frontend engineer, I was part of a team responsible for migrating the company's websites to modern technologies.",
     org: "Network 18",
     present: false,
     end: "03-31-2022",

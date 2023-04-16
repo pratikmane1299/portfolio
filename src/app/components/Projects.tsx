@@ -40,7 +40,7 @@ function Projects() {
                 <ExternalLink
                   href={`${getGithubProfileUrl()}${project.repoName}`}
                 >
-                  View Code
+                  View code
                 </ExternalLink>
               )}
             </div>
