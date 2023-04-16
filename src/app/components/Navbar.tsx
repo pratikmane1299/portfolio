@@ -9,10 +9,11 @@ const raleway = Raleway({ subsets: ["latin"], weight: ["600"] });
 
 function Navbar() {
 	const [isVisible, toggleNav] = useState(false);
+	const [activePage, setActivePage] = useState("");
 
   return (
     <div className="relative w-full">
-      <nav className="relative px-4 py-4 w-full flex items-center justify-between">
+      <nav className="sticky top-4 z-10 px-4 py-4 w-full flex items-center justify-between">
         <Link
           href={"/"}
           style={raleway.style}
@@ -25,9 +26,15 @@ function Navbar() {
           {navLinks.map(({ href, label }, idx) => (
             <li
               key={idx}
-              className="p-2 text-sm tracking-wide font-medium text-dracula-darker-100 rounded-md cursor-pointer hover:underline hover:bg-dracula-darker-800 transition-colors duration-500 ease-in-out"
+              className={`p-2 text-sm tracking-wide font-medium rounded-md cursor-pointer transition-colors duration-500 ease-in-out ${
+                activePage === href
+                  ? "text-dracula-dark-50 bg-dracula-darker-800 underline"
+                  : "text-dracula-darker-100 hover:text-dracula-dark-50 hover:underline hover:bg-dracula-darker-800"
+              }`}
             >
-              <Link href={href}>{label}</Link>
+              <Link href={href} onClick={() => setActivePage(href)}>
+                {label}
+              </Link>
             </li>
           ))}
         </ul>
@@ -75,15 +82,19 @@ function Navbar() {
           <div className="md:hidden fixed bg-gray-500 bg-opacity-75 transition-opacity z-10"></div>
           <div className="md:hidden absolute w-full flex justify-center px-4 z-30">
             <ul className="w-full flex flex-col bg-dracula-darker-800 rounded-md shadow-2xl">
-              {navLinks.map((link, idx) => (
+              {navLinks.map(({ label, href }, idx) => (
                 <li className="w-full px-4 py-3">
                   <Link
                     key={idx}
-                    href={link.href}
-                    className="text-xs font-medium text-dracula-darker-100 tracking-wide leading-6 hover:text-dracula-dark-50"
+                    href={href}
+                    className={`text-xs font-medium tracking-wide leading-6 ${
+                      activePage === href
+                        ? "text-dracula-dark-50"
+                        : "text-dracula-darker-100 hover:text-dracula-dark-50"
+                    }`}
                     onClick={() => toggleNav(false)}
                   >
-                    {link.label}
+                    {label}
                   </Link>
                 </li>
               ))}

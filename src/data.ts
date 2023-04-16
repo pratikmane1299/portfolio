@@ -8,7 +8,7 @@ software solutions | Committed to excellence & continuous learning.`;
 
 export const navLinks = [
   {
-    href: "/",
+    href: "",
     label: "Home",
   },
   {
