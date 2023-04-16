@@ -11,15 +11,15 @@ function Work() {
         {work.map((exp, idx) => (
           <div
             key={idx}
-            className="relative px-6 w-full grid grid-cols-[150px_1fr]"
+            className="relative px-4 md:px-6 w-full grid grid-cols-[90px_1fr] md:grid-cols-[150px_1fr]"
           >
-            <div className="px-6 flex flex-col items-end justify-center">
-              <span className="text-sm font-semibold">
+            <div className="w-full pr-4 md:pr-6 flex flex-col items-end justify-center">
+              <span className="text-xs md:text-sm font-semibold">
                 {exp?.present
                   ? "Present"
                   : exp.end && formatExperience(exp.end)}
               </span>
-              <span className="text-sm font-semibold">
+              <span className="text-xs md:text-sm font-semibold">
                 {formatExperience(exp.start)}
               </span>
               <span className="text-xs font-medium text-gray-300">{`(${calculateExperience(
@@ -27,25 +27,27 @@ function Work() {
                 exp?.end || new Date().toDateString()
               )})`}</span>
             </div>
-            <div className="relative ">
+            <div className="relative w-full">
               <div className="h-2 w-2 absolute top-1/2 -left-1 transform -translate-y-1/2 bg-gray-200 rounded-full"></div>
-              <div className="px-6 pb-4 w-full flex flex-col border-l border-dracula-darker-800">
-                <h5 className="text-lg font-semibold text-dracula-dark-50">
+              <div className="pl-4 md:pl-6 pb-4 w-full flex flex-col border-l border-dracula-darker-800">
+                <h5 className="mb-1 text-base md:text-lg font-semibold text-dracula-dark-50">
                   {exp.title}
                 </h5>
-                <div className="flex items-center">
+                <div className="flex flex-col md:flex-row md:items-center">
                   <a
                     target="_blank"
                     rel="noopener norefferer"
                     href={exp.orgUrl}
-                    className="inline-block w-fit text-sm font-medium text-dracula-pink-400 border-b border-transparent hover:border-dracula-pink-400"
+                    className="mb-2 md:mb-0 inline-block w-fit text-sm font-medium text-dracula-pink-400 border-b border-transparent hover:border-dracula-pink-400"
                   >
                     {exp.org}
                   </a>
-                  <span className="mx-2 inline-block top-1/2 transform -translate-y-1/2 h-1 w-1 rounded-full bg-gray-400"></span>
-                  <span className="relative ">Mumbai, India</span>
+									<div className="flex items-center text-xs">
+										<span className="mr-1 md:mx-2 inline-block top-1/2 transform -translate-y-1/2 h-1 w-1 rounded-full bg-gray-400"></span>
+										<span>Mumbai, India</span>
+									</div>
                 </div>
-								<p className="mt-2 text-gray-300 text-sm font-medium tracking-wide leading-6">{exp.description}</p>
+								<p className="mt-2 text-gray-300 text-xs md:text-sm font-medium tracking-wide leading-6">{exp.description}</p>
               </div>
             </div>
           </div>
