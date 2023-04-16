@@ -83,9 +83,8 @@ function Navbar() {
           <div className="md:hidden absolute w-full flex justify-center px-4 z-30">
             <ul className="w-full flex flex-col bg-dracula-darker-800 rounded-md shadow-2xl">
               {navLinks.map(({ label, href }, idx) => (
-                <li className="w-full px-4 py-3">
+                <li key={idx} className="w-full px-4 py-3">
                   <Link
-                    key={idx}
                     href={href}
                     className={`text-xs font-medium tracking-wide leading-6 ${
                       activePage === href

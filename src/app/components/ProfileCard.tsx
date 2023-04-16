@@ -13,7 +13,7 @@ function ProfileCard() {
     <section id="/" className="px-4 py-32 w-full flex flex-col">
       <h1 style={raleway.style} className="block mb-4 tracking-wider">
         <span className="block mb-1 text-xs md:text-base font-medium tracking-wider">
-          Hey there, I'm
+          {`Hey there, I'm`}
         </span>
         <span className="text-xl md:text-3xl px-2 block bg-dracula-pink-400 w-fit text-white">
           {name}
