@@ -11,4 +11,5 @@ body {
 	box-sizing: border-box;
 	background-color: #282a36;
 	color: #f8f8f2;
+	scroll-behavior: smooth;
 }

@@ -20,7 +20,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <main className="w-full md:max-w-3xl md:mx-auto">
+          {children}
+        </main>
+      </body>
     </html>
-  )
+  );
 }
