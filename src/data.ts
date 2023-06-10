@@ -5,7 +5,7 @@ export const name = 'Pratik Mane';
 export const jobTitle = "Software Engineer";
 export const bio = `at MakeStories | Football fan | Tech enthusiast | Building innovative
 software solutions | Committed to excellence & continuous learning.`;
-export const url = 'https://portfolio-pratikmane1299.vercel.app';
+export const url = 'https://pratikmane.netlify.app';
 
 export const navLinks = [
   {
