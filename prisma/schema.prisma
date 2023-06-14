@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  directUrl         = env("DIRECT_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model Tag {
+  id          Int           @id @default(autoincrement())
+  name        String        @db.VarChar(255)
+  slug        String        @db.VarChar(255)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  QuestionTag QuestionTag[]
+}
+
+model Difficulty {
+  id        Int        @id @default(autoincrement())
+  level     String     @unique @db.VarChar(255)
+  slug      String     @db.VarChar(255)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  questions Question[]
+}
+
+model Question {
+  id           Int           @id @default(autoincrement())
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  title        String        @db.VarChar(255)
+  description  String        @db.Text
+  number       Int
+  slug         String        @db.VarChar(255)
+  code         String        @db.Text
+  difficulty   Difficulty    @relation(fields: [difficultyId], references: [id])
+  difficultyId Int
+  tags         QuestionTag[]
+}
+
+model QuestionTag {
+  id         Int      @id @default(autoincrement())
+  question   Question @relation(fields: [questionId], references: [id])
+  questionId Int
+  tag        Tag      @relation(fields: [tagId], references: [id])
+  tagId      Int
+}

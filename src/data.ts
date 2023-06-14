@@ -20,6 +20,10 @@ export const navLinks = [
     href: "#projects",
     label: "Projects",
   },
+  {
+    href: "#leetcode",
+    label: "Leetcode",
+  },
 ];
 
 export const work = [
