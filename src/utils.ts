@@ -10,9 +10,11 @@ export function calculateExperience(fromDate: string, toDate: string) {
 	const yearsOfExperience = Math.floor(internalInMonths) / 12;
 	const monthsOfExperience = internalInMonths % 12;
 
-	return `${yearsOfExperience >= 1 ? `${yearsOfExperience} yr ${monthsOfExperience ? ',' : ''}` : ""}${
-    monthsOfExperience ? `${monthsOfExperience} m` : ""
-  }`;
+	return `${
+    yearsOfExperience >= 1
+      ? `${yearsOfExperience.toFixed(0)} yr ${monthsOfExperience ? "," : ""}`
+      : ""
+  }${monthsOfExperience ? `${monthsOfExperience} m` : ""}`;
 }
 
 export function formatExperience(date: string) {
