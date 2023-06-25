@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
+import { Mulish } from "next/font/google";
 
 import { bio, jobTitle, name, url } from "@/data";
+
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
 import "./globals.css";
+
+const mulish = Mulish({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
 const description = `${jobTitle} ${bio}`;
 
@@ -39,7 +46,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className="w-full md:max-w-3xl md:mx-auto">{children}</main>
+        <main
+          className="w-full md:max-w-3xl md:mx-auto flex min-h-screen flex-col"
+          style={mulish.style}
+        >
+          <header>
+            <Navbar />
+          </header>
+          {children}
+          {/* footer */}
+          <Footer />
+        </main>
       </body>
     </html>
   );
