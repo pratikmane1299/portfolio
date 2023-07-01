@@ -1,12 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { KeyboardEvent, useEffect, useRef, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 import useSerializeSearchParams from "@/hooks/useSerializeSearchParams";
 import { findFilter } from "@/utils";
 
-import Tag from "./Tag";
+import Tag from "../../components/Tag";
 
 type LeetcodeFiltersPropsType = {
   tags: any[];
@@ -51,11 +51,15 @@ function FilterTag({
 
 function LeetcodeFilters({ tags, difficulties }: LeetcodeFiltersPropsType) {
   const searchParams = useSearchParams();
+  const router = useRouter();
+
   const [filters, setFilters] = useState<{ slug: string; key: string }[]>([]);
+  const searchRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     const tagsString = searchParams.get("tags");
     const difficultiesString = searchParams.get("difficulties");
+		const query = searchParams.get("query") || "";
 
     const tags = tagsString
       ? tagsString?.split(",").map((tag) => ({ slug: tag, key: "tags" }))
@@ -66,16 +70,52 @@ function LeetcodeFilters({ tags, difficulties }: LeetcodeFiltersPropsType) {
           .map((difficulty) => ({ slug: difficulty, key: "difficulties" }))
       : [];
     setFilters([...tags, ...difficulties]);
+		
+		if (searchRef.current) {
+      searchRef.current.value = query;
+    }
+
   }, [searchParams]);
+
+  function handleKeyDown(e: KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Enter") {
+      const keys = [...searchParams.keys()].filter(
+        (param) => param !== "page" && param !== "query"
+      );
+
+			const query = searchRef.current?.value;
+
+      let mergedQueryParams = query
+        ? `query=${searchRef.current?.value.trim()}`
+        : "";
+      keys.forEach(
+        (key) => (mergedQueryParams += `&${key}=${searchParams.get(key)}`)
+      );
+
+      router.push(
+        `/leetcode${mergedQueryParams ? `?${mergedQueryParams}` : ""}`
+      );
+    }
+  }
 
   return (
     <div>
-      <input
-        type="search"
-        placeholder="Search problems via name..."
-        className="w-full px-2.5 py-1.5 text-sm font-normal text-gray-800 rounded-md outline-none border border-gray-500 focus:ring-1 focus:ring-dracula-pink-400 focus:border-dracula-pink-400"
-      />
-      <div className="mt-3 flex items-center gap-6">
+      <div>
+        <label htmlFor="search hidden">Search problems</label>
+        <input
+          ref={searchRef}
+          type="search"
+          name="search"
+          id="search"
+          placeholder="Search problems via name..."
+          className="w-full px-2.5 py-1.5 text-sm font-normal text-gray-800 rounded-md outline-none border border-gray-500 focus:ring-1 focus:ring-dracula-pink-400 focus:border-dracula-pink-400"
+          onKeyDown={handleKeyDown}
+        />
+        <span className="mt-1 block text-xs font-normal text-gray-400 leading-5 tracking-wide">
+          Hit enter to search.
+        </span>
+      </div>
+      <div className="mt-5 flex items-center gap-6">
         <span className="text-sm font-normal">Difficulty:</span>
         <div className="flex-1 flex flex-wrap gap-2">
           {difficulties.map((difficulty) => (

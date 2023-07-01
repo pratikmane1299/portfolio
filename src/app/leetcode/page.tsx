@@ -6,9 +6,9 @@ import {
   getLeetcodeProblems,
 } from "@/server";
 
-import LeetcodeProblemsTable from "../components/LeetcodeProblemsTable";
+import LeetcodeProblemsTable from "./components/LeetcodeProblemsTable";
 import Pagination from "../components/Pagination";
-import LeetcodeFilters from "../components/LeetcodeFilters";
+import LeetcodeFilters from "./components/LeetcodeFilters";
 
 export const metadata: Metadata = {
   title: "Leetcode problems",

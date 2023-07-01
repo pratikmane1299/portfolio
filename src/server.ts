@@ -23,8 +23,9 @@ export async function getLeetcodeProblems(params: {
   page?: number;
   tags?: string;
   difficulties?: string;
+  query?: string;
 }) {
-  const { page = 1, tags = "", difficulties = "" } = params;
+  const { page = 1, tags = "", difficulties = "", query = "" } = params;
 
   const limit = 25;
   const tagsArr: string[] = splitString(tags),
@@ -56,7 +57,12 @@ export async function getLeetcodeProblems(params: {
       }
     : {};
 
+  const nameFilter = query
+    ? { title: { contains: query, mode: "insensitive" } }
+    : {};
+
   const whereClause: any = {
+    ...nameFilter,
     ...tagsFilter,
     ...difficultiesFilter,
   };

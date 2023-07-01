@@ -3,8 +3,8 @@ import Link from "next/link";
 
 import { getDifficultyColor } from "@/utils";
 
-import DifficultyTag from "./DifficultyTag";
-import Tag from "./Tag";
+import DifficultyTag from "../../components/DifficultyTag";
+import Tag from "../../components/Tag";
 
 export default function LeetcodeProblemsTable({
   problems,
