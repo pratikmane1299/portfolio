@@ -1,14 +1,11 @@
+import React from "react";
 import { Metadata } from "next";
 
-import {
-  getAllDifficulty,
-  getAllTagsForFilter,
-  getLeetcodeProblems,
-} from "@/server";
+import { getAllDifficulty, getAllTagsForFilter } from "@/server";
 
 import LeetcodeProblemsTable from "./components/LeetcodeProblemsTable";
-import Pagination from "../components/Pagination";
 import LeetcodeFilters from "./components/LeetcodeFilters";
+import LeetcodeProblemsTableSkeleton from "./components/LeetcodeProblemsTableSkeleton";
 
 export const metadata: Metadata = {
   title: "Leetcode problems",
@@ -22,7 +19,6 @@ export default async function Leetcode({
 }) {
   const difficulties = await getAllDifficulty();
   const tags = await getAllTagsForFilter();
-  const { total, problems } = await getLeetcodeProblems(searchParams);
 
   return (
     <div className="mb-16 flex flex-col ">
@@ -34,17 +30,10 @@ export default async function Leetcode({
         <div className="mt-5">
           <LeetcodeFilters tags={tags} difficulties={difficulties} />
 
-          <div className="mt-10">
-            <LeetcodeProblemsTable problems={problems} />
-          </div>
-          <div className="mt-5 flex justify-end">
-            <Pagination
-              page={Number(searchParams.page) || 1}
-              pageSize={25}
-              total={total}
-              urlPrefix="/leetcode"
-            />
-          </div>
+          {/* streaming problems table */}
+          <React.Suspense fallback={<LeetcodeProblemsTableSkeleton />}>
+            <LeetcodeProblemsTable searchParams={searchParams} />
+          </React.Suspense>
         </div>
       </section>
     </div>
