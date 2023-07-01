@@ -2,7 +2,7 @@
 import { useSearchParams } from "next/navigation";
 
 export default function useSerializeSearchParams(paramsToSerialize: {
-  [key: string]: string | number;
+  [key: string]: string | number | undefined;
 }) {
   const seachParams = useSearchParams();
 
@@ -12,9 +12,9 @@ export default function useSerializeSearchParams(paramsToSerialize: {
     ...seachParams.entries(),
     ...Object.entries(paramsToSerialize),
   ]) {
-    if (typeof param === "string")
+    if (typeof param === "string" && paramsToSerialize[param])
       queryParams = { ...queryParams, [param]: value };
   }
 
-	return queryParams;
+  return queryParams;
 }

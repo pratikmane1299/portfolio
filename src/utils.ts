@@ -1,18 +1,18 @@
 import { DifficultyEnum } from "./types";
 
 export function calculateExperience(fromDate: string, toDate: string) {
-	const fDate = new Date(fromDate);
-	const tDate = new Date(toDate);	
+  const fDate = new Date(fromDate);
+  const tDate = new Date(toDate);
 
-	const fromMonth = fDate.getFullYear() * 12 + fDate.getMonth();
-	const toMonth = tDate.getFullYear() * 12 + tDate.getMonth();
+  const fromMonth = fDate.getFullYear() * 12 + fDate.getMonth();
+  const toMonth = tDate.getFullYear() * 12 + tDate.getMonth();
 
-	const internalInMonths = toMonth - fromMonth;
+  const internalInMonths = toMonth - fromMonth;
 
-	const yearsOfExperience = Math.floor(internalInMonths) / 12;
-	const monthsOfExperience = internalInMonths % 12;
+  const yearsOfExperience = Math.floor(internalInMonths) / 12;
+  const monthsOfExperience = internalInMonths % 12;
 
-	return `${
+  return `${
     yearsOfExperience >= 1
       ? `${yearsOfExperience.toFixed(0)} yr ${monthsOfExperience ? "," : ""}`
       : ""
@@ -20,17 +20,17 @@ export function calculateExperience(fromDate: string, toDate: string) {
 }
 
 export function formatExperience(date: string) {
-	const d = new Date(date);
+  const d = new Date(date);
 
-	return d.toLocaleDateString("en", { month: "short", year: "numeric" });
+  return d.toLocaleDateString("en", { month: "short", year: "numeric" });
 }
 
 export function getCurrentYear() {
-	return new Date().getFullYear();
+  return new Date().getFullYear();
 }
 
 export function getGithubProfileUrl() {
-	return `https://github.com/pratikmane1299/`;
+  return `https://github.com/pratikmane1299/`;
 }
 
 export function classNames(...classes: string[]) {
@@ -108,4 +108,19 @@ export function paginate({
     hasNextPage: page < totalPages,
     pages,
   };
+}
+
+export function findFilter(
+  filters: { slug: string; key: string }[],
+  filter: string
+) {
+  if (filters.length === 0) return undefined;
+
+  return filters.find((f) => f.slug === filter);
+}
+
+export function splitString(str: string, seperator = ",") {
+  if (!str) return [];
+
+  return str.split(seperator);
 }

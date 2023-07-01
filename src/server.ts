@@ -2,6 +2,8 @@
 
 import prisma from "./lib/prisma";
 
+import { splitString } from "./utils";
+
 export async function getRecentLeetcodeProblems() {
   return await prisma.question.findMany({
     select: {
@@ -20,14 +22,47 @@ export async function getRecentLeetcodeProblems() {
 export async function getLeetcodeProblems(params: {
   page?: number;
   tags?: string;
+  difficulties?: string;
 }) {
-  const { page = 1, tags } = params;
+  const { page = 1, tags = "", difficulties = "" } = params;
+
   const limit = 25;
+  const tagsArr: string[] = splitString(tags),
+    difficultiesArr: string[] = splitString(difficulties);
 
   const offset = limit * page - limit;
 
+  const tagsFilter = tagsArr.length
+    ? {
+        tags: {
+          some: {
+            tag: {
+              slug: {
+                in: tagsArr,
+              },
+            },
+          },
+        },
+      }
+    : {};
+
+  const difficultiesFilter = difficultiesArr.length
+    ? {
+        difficulty: {
+          slug: {
+            in: difficultiesArr,
+          },
+        },
+      }
+    : {};
+
+  const whereClause: any = {
+    ...tagsFilter,
+    ...difficultiesFilter,
+  };
+
   const [total, problems] = await prisma.$transaction([
-    prisma.question.count(),
+    prisma.question.count({ where: whereClause }),
     prisma.question.findMany({
       select: {
         id: true,
@@ -55,6 +90,7 @@ export async function getLeetcodeProblems(params: {
       },
       skip: offset,
       take: limit,
+      where: whereClause,
     }),
   ]);
 
@@ -62,7 +98,7 @@ export async function getLeetcodeProblems(params: {
 }
 
 export async function getAllTagsForFilter() {
-	return await prisma.tag.findMany({
+  return await prisma.tag.findMany({
     select: {
       id: true,
       name: true,
@@ -72,7 +108,7 @@ export async function getAllTagsForFilter() {
 }
 
 export async function getAllDifficulty() {
-	return await prisma.difficulty.findMany({
+  return await prisma.difficulty.findMany({
     select: {
       id: true,
       level: true,
