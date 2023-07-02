@@ -125,21 +125,9 @@ export async function getLeetcodeProblems(params: {
 }
 
 export async function getAllTagsForFilter() {
-  return await prisma.tag.findMany({
-    select: {
-      id: true,
-      name: true,
-      slug: true,
-    },
-  });
+  return await redis.get("TAGS");
 }
 
 export async function getAllDifficulty() {
-  return await prisma.difficulty.findMany({
-    select: {
-      id: true,
-      level: true,
-      slug: true,
-    },
-  });
+  return await redis.get("DIFFICULTIES");
 }
