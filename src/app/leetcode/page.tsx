@@ -2,6 +2,7 @@ import React from "react";
 import { Metadata } from "next";
 
 import { getAllDifficulty, getAllTagsForFilter } from "@/server";
+import { DifficultType, TagType } from "@/types";
 
 import LeetcodeProblemsTable from "./components/LeetcodeProblemsTable";
 import LeetcodeFilters from "./components/LeetcodeFilters";
@@ -17,8 +18,8 @@ export default async function Leetcode({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const difficulties: any = await getAllDifficulty();
-  const tags: any = await getAllTagsForFilter();
+  const difficulties: DifficultType[] = await getAllDifficulty();
+  const tags: TagType[] = await getAllTagsForFilter();
 
   return (
     <div className="my-16 flex flex-col ">

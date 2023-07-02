@@ -5,12 +5,13 @@ import Link from "next/link";
 
 import useSerializeSearchParams from "@/hooks/useSerializeSearchParams";
 import { findFilter } from "@/utils";
+import { DifficultType, TagType } from "@/types";
 
 import Tag from "../../components/Tag";
 
 type LeetcodeFiltersPropsType = {
-  tags: any[];
-  difficulties: any[];
+  tags: TagType[];
+  difficulties: DifficultType[];
 };
 
 function FilterTag({
@@ -59,7 +60,7 @@ function LeetcodeFilters({ tags, difficulties }: LeetcodeFiltersPropsType) {
   useEffect(() => {
     const tagsString = searchParams.get("tags");
     const difficultiesString = searchParams.get("difficulties");
-		const query = searchParams.get("query") || "";
+    const query = searchParams.get("query") || "";
 
     const tags = tagsString
       ? tagsString?.split(",").map((tag) => ({ slug: tag, key: "tags" }))
@@ -70,11 +71,10 @@ function LeetcodeFilters({ tags, difficulties }: LeetcodeFiltersPropsType) {
           .map((difficulty) => ({ slug: difficulty, key: "difficulties" }))
       : [];
     setFilters([...tags, ...difficulties]);
-		
-		if (searchRef.current) {
+
+    if (searchRef.current) {
       searchRef.current.value = query;
     }
-
   }, [searchParams]);
 
   function handleKeyDown(e: KeyboardEvent<HTMLInputElement>) {
@@ -83,7 +83,7 @@ function LeetcodeFilters({ tags, difficulties }: LeetcodeFiltersPropsType) {
         (param) => param !== "page" && param !== "query"
       );
 
-			const query = searchRef.current?.value;
+      const query = searchRef.current?.value;
 
       let mergedQueryParams = query
         ? `query=${searchRef.current?.value.trim()}`
@@ -146,9 +146,6 @@ function LeetcodeFilters({ tags, difficulties }: LeetcodeFiltersPropsType) {
               filters={filters}
               paramsKey="tags"
             />
-            // <Link key={tag.id} href={"/leetcode"}>
-            //   <Tag tag={tag.name} />
-            // </Link>
           ))}
         </div>
       </div>

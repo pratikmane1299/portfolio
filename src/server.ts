@@ -2,7 +2,7 @@
 
 import prisma from "./lib/prisma";
 import redis from "./lib/redis";
-
+import { DifficultType, LeetCodeTableProblemsResType, TagType } from "./types";
 import { generateQueryHashKey, splitString } from "./utils";
 
 export async function getRecentLeetcodeProblems() {
@@ -25,7 +25,7 @@ export async function getLeetcodeProblems(params: {
   tags?: string;
   difficulties?: string;
   query?: string;
-}) {
+}): Promise<LeetCodeTableProblemsResType> {
   const { page = 1, tags = "", difficulties = "", query = "" } = params;
 
   const queryHashKey = generateQueryHashKey({
@@ -124,10 +124,10 @@ export async function getLeetcodeProblems(params: {
   return { total, problems };
 }
 
-export async function getAllTagsForFilter() {
-  return await redis.get("TAGS");
+export async function getAllTagsForFilter(): Promise<TagType[]> {
+  return (await redis.get("TAGS")) as TagType[];
 }
 
-export async function getAllDifficulty() {
-  return await redis.get("DIFFICULTIES");
+export async function getAllDifficulty(): Promise<DifficultType[]> {
+  return (await redis.get("DIFFICULTIES")) as DifficultType[];
 }

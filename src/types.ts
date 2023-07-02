@@ -11,18 +11,37 @@ export enum DifficultyEnum {
 	HARD = 'Hard',
 }
 
-export type LeetCodePageProblemType = {
-  id: number;
+export type LeetcodeTableProblemTagType = {
+  tag: {
+    id: number;
+    name: string;
+  };
+};
+
+export type LeetcodeTableProblemType = {
+	id: number;
   number: number;
   title: string;
   slug: string;
   difficulty: {
-    level: DifficultyEnum;
+    level: string;
   };
-  tags: {
-    tag: {
-      id: number;
-      name: string;
-    };
-  }[];
+  tags: LeetcodeTableProblemTagType[];
+}
+
+export type LeetCodeTableProblemsResType = {
+  total: number;
+  problems: LeetcodeTableProblemType[];
+};
+
+export type DifficultType = {
+  id: number;
+  level: string;
+  slug: string;
+};
+
+export type TagType = {
+	id: number;
+	name: string;
+	slug: string;
 };

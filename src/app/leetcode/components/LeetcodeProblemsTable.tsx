@@ -35,7 +35,7 @@ export default function LeetcodeProblemsTable({
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-500">
-          {problems.map((problem: any) => (
+          {problems.map((problem) => (
             <tr key={problem.id} className="divide-x divide-gray-500">
               <td className="py-2 px-3 text-center">
                 <div className="min-w-[60px] w-full">
@@ -61,7 +61,7 @@ export default function LeetcodeProblemsTable({
               <td className="py-2 px-3">
                 <div className="inline-flex flex-wrap gap-2">
                   {problem.tags.length > 0 &&
-                    problem.tags.map((tag: any) => (
+                    problem.tags.map((tag) => (
                       <Tag key={tag.tag.id} tag={tag.tag.name} />
                     ))}
                 </div>
