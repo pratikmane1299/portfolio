@@ -35,7 +35,7 @@ export default function LeetcodeProblemsTable({
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-500">
-          {problems.map((problem) => (
+          {problems.map((problem: any) => (
             <tr key={problem.id} className="divide-x divide-gray-500">
               <td className="py-2 px-3 text-center">
                 <div className="min-w-[60px] w-full">

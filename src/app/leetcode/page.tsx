@@ -17,11 +17,11 @@ export default async function Leetcode({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const difficulties = await getAllDifficulty();
-  const tags = await getAllTagsForFilter();
+  const difficulties: any = await getAllDifficulty();
+  const tags: any = await getAllTagsForFilter();
 
   return (
-    <div className="mb-16 flex flex-col ">
+    <div className="my-16 flex flex-col ">
       <section className="px-4 w-full">
         <h1 className="text-xl font-semibold leading-6 tracking-wide">
           Leetcode Problems

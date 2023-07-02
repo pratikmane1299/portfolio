@@ -35,7 +35,7 @@ export async function getLeetcodeProblems(params: {
     query,
   });
 
-  const res = await redis.get(queryHashKey);
+  const res: any = await redis.get(queryHashKey);
 
   if (res !== null) {
     // if found in cache return the cached value;

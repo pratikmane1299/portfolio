@@ -1,7 +1,23 @@
-type SectionTitlePropsType = { title: string }
+import { classNames } from "@/utils";
 
-function SectionTitle({title}: SectionTitlePropsType) {
-	return <h3 className="mb-4 md:mb-6 text-lg md:text-xl font-medium ">{title}</h3>;
+type SectionTitlePropsType = { title: string; className?: string; marginBottom?: boolean };
+
+function SectionTitle({
+  title,
+  className = "",
+  marginBottom = true,
+}: SectionTitlePropsType) {
+  return (
+    <h3
+      className={classNames(
+        "text-lg md:text-xl font-medium ",
+        marginBottom ? "mb-4 md:mb-6 " : "",
+        className
+      )}
+    >
+      {title}
+    </h3>
+  );
 }
 
-export default SectionTitle
+export default SectionTitle;
