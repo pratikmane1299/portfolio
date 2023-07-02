@@ -12,16 +12,16 @@ export const navLinks = [
     href: "",
     label: "Home",
   },
+  // {
+  //   href: "#work",
+  //   label: "Work",
+  // },
+  // {
+  //   href: "#projects",
+  //   label: "Projects",
+  // },
   {
-    href: "#work",
-    label: "Work",
-  },
-  {
-    href: "#projects",
-    label: "Projects",
-  },
-  {
-    href: "#leetcode",
+    href: "/leetcode",
     label: "Leetcode",
   },
 ];
