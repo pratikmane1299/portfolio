@@ -1,8 +1,9 @@
 "use server";
 
 import prisma from "./lib/prisma";
+import redis from "./lib/redis";
 
-import { splitString } from "./utils";
+import { generateQueryHashKey, splitString } from "./utils";
 
 export async function getRecentLeetcodeProblems() {
   return await prisma.question.findMany({
@@ -27,6 +28,21 @@ export async function getLeetcodeProblems(params: {
 }) {
   const { page = 1, tags = "", difficulties = "", query = "" } = params;
 
+  const queryHashKey = generateQueryHashKey({
+    page,
+    tags,
+    difficulties,
+    query,
+  });
+
+  const res = await redis.get(queryHashKey);
+
+  if (res !== null) {
+    // if found in cache return the cached value;
+    return res;
+  }
+
+  // fetch data from db and save in cache;
   const limit = 25;
   const tagsArr: string[] = splitString(tags),
     difficultiesArr: string[] = splitString(difficulties);
@@ -99,6 +115,11 @@ export async function getLeetcodeProblems(params: {
       where: whereClause,
     }),
   ]);
+
+  // set cache for 1 day...
+  await redis.set(queryHashKey, JSON.stringify({ total, problems }), {
+    ex: 24 * 60 * 60,
+  });
 
   return { total, problems };
 }

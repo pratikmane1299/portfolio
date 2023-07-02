@@ -124,3 +124,19 @@ export function splitString(str: string, seperator = ",") {
 
   return str.split(seperator);
 }
+
+export function generateQueryHashKey(params: Record<string, any>) {
+  if (params) {
+    let hash = "";
+
+    for (const key in params) {
+      if (Object.prototype.hasOwnProperty.call(params, key) && params[key]) {
+        hash += `${key}=${params[key]}&`;
+      }
+    }
+
+    return hash.replace(/&$/, "");
+  }
+
+  return "";
+}
