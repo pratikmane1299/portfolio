@@ -24,7 +24,7 @@ export default async function Leetcode({
   return (
     <div className="my-16 flex flex-col ">
       <section className="px-4 w-full">
-        <h1 className="text-xl font-semibold leading-6 tracking-wide">
+        <h1 className="text-lg md:text-xl font-semibold leading-6 tracking-wide">
           Leetcode Problems
         </h1>
 

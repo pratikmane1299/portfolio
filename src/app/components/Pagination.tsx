@@ -22,7 +22,7 @@ function PaginationLink({
 }: PaginationLinkPropsType) {
   const serialized = useSerializeSearchParams({ page });
   const baseClasses =
-    "px-4 py-2 text-sm font-normal transition duration-300 ease-in-out ";
+    "px-4 py-2 text-xs md:text-sm font-normal transition duration-300 ease-in-out ";
 
   const activeClasses =
     currentPage === page
@@ -70,33 +70,53 @@ export default function Pagination({
     paginate({ page, pageSize, total });
 
   return (
-    <div className="ring-1 ring-gray-500 flex w-fit rounded-md divide-x divide-gray-500 overflow-hidden	">
-      <PaginationLink
-        urlPrefix={urlPrefix}
-        currentPage={page}
-        page={previousPage}
-        isDisabled={!hasPreviousPage}
-      >
-        {"<"}
-      </PaginationLink>
-      {pages.map((pageNumber) => (
+    <React.Fragment>
+      <div className="md:hidden flex w-fit ring-1 ring-gray-500 rounded-md divide-x divide-gray-500 overflow-hidden">
         <PaginationLink
-					key={pageNumber}
           urlPrefix={urlPrefix}
           currentPage={page}
-          page={pageNumber}
+          page={previousPage}
+          isDisabled={!hasPreviousPage}
         >
-          {pageNumber}
+          Prev
         </PaginationLink>
-      ))}
-      <PaginationLink
-        urlPrefix={urlPrefix}
-        currentPage={page}
-        page={nextPage}
-        isDisabled={!hasNextPage}
-      >
-        {">"}
-      </PaginationLink>
-    </div>
+        <PaginationLink
+          urlPrefix={urlPrefix}
+          currentPage={page}
+          page={nextPage}
+          isDisabled={!hasNextPage}
+        >
+          Next
+        </PaginationLink>
+      </div>
+      <div className="hidden ring-1 ring-gray-500 md:flex w-fit rounded-md divide-x divide-gray-500 overflow-hidden	">
+        <PaginationLink
+          urlPrefix={urlPrefix}
+          currentPage={page}
+          page={previousPage}
+          isDisabled={!hasPreviousPage}
+        >
+          {"<"}
+        </PaginationLink>
+        {pages.map((pageNumber) => (
+          <PaginationLink
+            key={pageNumber}
+            urlPrefix={urlPrefix}
+            currentPage={page}
+            page={pageNumber}
+          >
+            {pageNumber}
+          </PaginationLink>
+        ))}
+        <PaginationLink
+          urlPrefix={urlPrefix}
+          currentPage={page}
+          page={nextPage}
+          isDisabled={!hasNextPage}
+        >
+          {">"}
+        </PaginationLink>
+      </div>
+    </React.Fragment>
   );
 }

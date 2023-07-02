@@ -101,14 +101,16 @@ function LeetcodeFilters({ tags, difficulties }: LeetcodeFiltersPropsType) {
   return (
     <div>
       <div>
-        <label htmlFor="search hidden">Search problems</label>
+        <label htmlFor="search hidden" className="text-sm md:text-base ">
+          Search problems
+        </label>
         <input
           ref={searchRef}
           type="search"
           name="search"
           id="search"
           placeholder="Search problems via name..."
-          className="w-full px-2.5 py-1.5 text-sm font-normal text-gray-800 rounded-md outline-none border border-gray-500 focus:ring-1 focus:ring-dracula-pink-400 focus:border-dracula-pink-400"
+          className="w-full px-2.5 py-1.5 text-xs md:text-sm font-normal text-gray-800 rounded-md outline-none border border-gray-500 focus:ring-1 focus:ring-dracula-pink-400 focus:border-dracula-pink-400"
           onKeyDown={handleKeyDown}
         />
         <span className="mt-1 block text-xs font-normal text-gray-400 leading-5 tracking-wide">

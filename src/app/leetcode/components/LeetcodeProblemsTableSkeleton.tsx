@@ -4,8 +4,8 @@ const columns = ["Number", "Name", "Difficulty", "Tags"];
 
 function LeetcodeProblemsTableSkeleton() {
   return (
-    <div className="mt-10">
-      <table className="w-full rounded-md overflow-hidden ring-1 ring-gray-500">
+    <div className="mt-10 min-w-full overflow-x-auto rounded-md ring-1 ring-gray-500">
+      <table className="w-full overflow-hidden ">
         <thead className="border-b border-gray-500">
           <tr className="divide-x divide-gray-500">
             {columns.map((column, idx) => (
@@ -27,13 +27,13 @@ function LeetcodeProblemsTableSkeleton() {
               <td className="w-[60px] py-4 px-3 text-center">
                 <div className="h-2 bg-slate-500 rounded"></div>
               </td>
-              <td className="py-4 px-3 text-center">
+              <td className="min-w-[200px] py-4 px-3 text-center">
                 <div className="h-2 bg-slate-500 rounded"></div>
               </td>
               <td className="w-[80px] py-4 px-3 text-center">
                 <div className="h-2 bg-slate-500 rounded"></div>
               </td>
-              <td className="py-4 px-3 text-center">
+              <td className="min-w-[250px] py-4 px-3 text-center">
                 <div className="h-2 bg-slate-500 rounded"></div>
               </td>
             </tr>
