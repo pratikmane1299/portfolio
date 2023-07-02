@@ -12,6 +12,9 @@ export default function useSerializeSearchParams(paramsToSerialize: {
     ...seachParams.entries(),
     ...Object.entries(paramsToSerialize),
   ]) {
+		if (queryParams?.[param] && !value) {
+      delete queryParams?.[param];
+    }
     if (typeof param === "string" && value)
       queryParams = { ...queryParams, [param]: value };
   }

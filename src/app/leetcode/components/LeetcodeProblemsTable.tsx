@@ -73,7 +73,7 @@ export default function LeetcodeProblemsTable({
 
       <div className="mt-5 flex justify-end">
         <Pagination
-          page={searchParams.page || 1}
+          page={Number(searchParams.page) || 1}
           pageSize={25}
           total={total}
           urlPrefix="/leetcode"
