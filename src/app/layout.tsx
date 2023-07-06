@@ -47,11 +47,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <Script
+        <script
+          defer
+          data-domain="pratikmane.netlify.app"
+          src="https://plausible.io/js/script.js"
+        ></script>
+
+        {/* <Script
           data-domain="pratikmane.netlify.app"
           src="https://plausible.io/js/script.js"
           strategy="afterInteractive"
-        />
+        /> */}
       </head>
       <body>
         <main
