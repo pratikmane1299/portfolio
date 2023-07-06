@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Mulish } from "next/font/google";
+import Script from "next/script";
 
 import { bio, jobTitle, name, url } from "@/data";
 
@@ -45,6 +46,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          data-domain="pratikmane.netlify.app"
+          src="https://plausible.io/js/script.js"
+          strategy="afterInteractive"
+        />
+      </head>
       <body>
         <main
           className="w-full md:max-w-3xl md:mx-auto flex min-h-screen flex-col"
