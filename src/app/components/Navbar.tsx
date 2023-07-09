@@ -1,6 +1,7 @@
-'use client';
+"use client";
 import { useState } from "react";
 import { Raleway } from "next/font/google";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 import { navLinks } from "@/data";
@@ -8,8 +9,8 @@ import { navLinks } from "@/data";
 const raleway = Raleway({ subsets: ["latin"], weight: ["600"] });
 
 function Navbar() {
-	const [isVisible, toggleNav] = useState(false);
-	const [activePage, setActivePage] = useState("");
+  const pathname = usePathname();
+  const [isVisible, toggleNav] = useState(false);
 
   return (
     <div className="relative w-full">
@@ -27,14 +28,12 @@ function Navbar() {
             <li
               key={idx}
               className={`p-2 text-sm tracking-wide font-medium rounded-md cursor-pointer transition-colors duration-500 ease-in-out ${
-                activePage === href
+                pathname === href
                   ? "text-dracula-dark-50 bg-dracula-darker-800 underline"
                   : "text-dracula-darker-100 hover:text-dracula-dark-50 hover:underline hover:bg-dracula-darker-800"
               }`}
             >
-              <Link href={href} onClick={() => setActivePage(href)}>
-                {label}
-              </Link>
+              <Link href={href}>{label}</Link>
             </li>
           ))}
           <li
@@ -94,7 +93,7 @@ function Navbar() {
                   <Link
                     href={href}
                     className={`w-full text-xs font-medium tracking-wide leading-6 ${
-                      activePage === href
+                      pathname === href
                         ? "text-dracula-dark-50"
                         : "text-dracula-darker-100 hover:text-dracula-dark-50"
                     }`}
@@ -107,7 +106,7 @@ function Navbar() {
               <li className="w-full px-4 py-3">
                 <Link
                   href={"/resume.pdf"}
-									target="_blank"
+                  target="_blank"
                   className={`w-full text-xs font-medium tracking-wide leading-6 text-dracula-darker-100 hover:text-dracula-dark-50`}
                   onClick={() => toggleNav(false)}
                 >

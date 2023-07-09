@@ -9,17 +9,9 @@ export const url = 'https://pratikmane.netlify.app';
 
 export const navLinks = [
   {
-    href: "",
+    href: "/",
     label: "Home",
   },
-  // {
-  //   href: "#work",
-  //   label: "Work",
-  // },
-  // {
-  //   href: "#projects",
-  //   label: "Projects",
-  // },
   {
     href: "/leetcode",
     label: "Leetcode",
