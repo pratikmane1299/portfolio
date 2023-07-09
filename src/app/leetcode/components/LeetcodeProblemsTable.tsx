@@ -53,9 +53,12 @@ export default function LeetcodeProblemsTable({
                     </div>
                   </td>
                   <td className="min-w-[200px] w-full py-2 px-3">
-                    <span className="text-xs md:text-sm font-normal tracking-wide leading-4">
+                    <Link
+                      className="text-xs md:text-sm font-normal tracking-wide leading-4"
+                      href={`/leetcode/${problem.slug}`}
+                    >
                       {problem.title}
-                    </span>
+                    </Link>
                   </td>
                   <td className="py-2 px-3 text-center">
                     <DifficultyTag

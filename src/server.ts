@@ -131,3 +131,35 @@ export async function getAllTagsForFilter(): Promise<TagType[]> {
 export async function getAllDifficulty(): Promise<DifficultType[]> {
   return (await redis.get("DIFFICULTIES")) as DifficultType[];
 }
+
+export async function getLeetcodeProblemBySlug(slug: string) {
+	return await prisma.question.findFirst({
+    where: {
+      slug: {
+        equals: slug,
+      },
+    },
+    select: {
+      id: true,
+      number: true,
+      title: true,
+      description: true,
+      code: true,
+      difficulty: {
+        select: {
+          level: true,
+        },
+      },
+      tags: {
+        select: {
+          tag: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
+        },
+      },
+    },
+  });
+}
