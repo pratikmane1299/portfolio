@@ -1,6 +1,5 @@
 import React from "react";
-
-import { getRecentLeetcodeProblems } from "@/server";
+import { ErrorBoundary } from "react-error-boundary";
 
 import Work from "./components/Work";
 import Projects from "./components/Projects";
@@ -8,8 +7,6 @@ import ProfileCard from "./components/ProfileCard";
 import Leetcode from "./components/Leetcode";
 
 export default async function Home() {
-  const problems = await getRecentLeetcodeProblems();
-
   return (
     <React.Fragment>
       {/* bio */}
@@ -19,7 +16,15 @@ export default async function Home() {
       {/* projects */}
       <Projects />
       {/* leetcode */}
-      <Leetcode problems={problems} />
+      <ErrorBoundary
+        fallback={
+          <div className="my-5 text-center text-xs md:text-sm font-normal tracking-wide">
+            Could not find leetcode problems
+          </div>
+        }
+      >
+        <Leetcode />
+      </ErrorBoundary>
     </React.Fragment>
   );
 }

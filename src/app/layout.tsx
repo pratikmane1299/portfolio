@@ -61,7 +61,7 @@ export default function RootLayout({
       </head>
       <body>
         <main
-          className="w-full md:max-w-3xl md:mx-auto flex min-h-screen flex-col"
+          className="w-full md:max-w-3xl md:mx-auto flex h-screen min-h-screen flex-col"
           style={mulish.style}
         >
           <header>
