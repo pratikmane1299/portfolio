@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Mulish } from "next/font/google";
-import Script from "next/script";
 
 import { bio, jobTitle, name, url } from "@/data";
 
@@ -14,7 +13,10 @@ const mulish = Mulish({ subsets: ["latin"], weight: ["400", "500", "600"] });
 const description = `${jobTitle} ${bio}`;
 
 export const metadata: Metadata = {
-  title: name,
+  title: {
+    template: `%s | ${name}`,
+    default: name,
+  },
   description,
   themeColor: "#fd55b6",
   metadataBase: new URL(`${url}`),

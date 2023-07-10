@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { getLeetcodeProblemBySlug } from "@/server";
@@ -6,7 +7,24 @@ import DifficultyTag from "@/app/components/DifficultyTag";
 import MDXRenderer from "@/app/components/MDXRenderer";
 import Tag from "@/app/components/Tag";
 
-import 'highlight.js/styles/tokyo-night-dark.css';
+import 'highlight.js/styles/github-dark-dimmed.css';
+
+type Props = {
+  params: { slug: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const slug = params.slug;
+
+  const problem = await getLeetcodeProblemBySlug(slug);
+
+  if (problem === null) return { title: "Leetcode problem not found." };
+
+  return {
+    title: problem.title,
+    keywords: problem.tags.map((tag) => tag.tag.name).join(","),
+  };
+}
 
 export default async function LeetcodeProblem({
   params: { slug },
@@ -32,10 +50,6 @@ export default async function LeetcodeProblem({
       </div>
 
       <article className="my-5">
-        {/* <div
-          dangerouslySetInnerHTML={{ __html: problem?.description || "" }}
-        ></div> */}
-
         <div className="leetcode-problem">
           <MDXRenderer source={`${problem?.description} \n ${problem?.code}`} />
         </div>
