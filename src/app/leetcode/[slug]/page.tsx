@@ -77,7 +77,7 @@ export default async function LeetcodeProblem({
 
       <section className="mb-5">
         <span className="block mb-2 text-base font-medium">Related Tags</span>
-        <div className="flex space-x-2 flex-wrap">
+        <div className="flex gap-2 flex-wrap">
           {problem?.tags.map((tag: any) => (
             <Tag key={tag?.tag.id} tag={tag?.tag?.name} />
           ))}
