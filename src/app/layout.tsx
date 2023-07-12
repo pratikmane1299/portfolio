@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Mulish } from "next/font/google";
+import { Fira_Code } from "next/font/google";
 
 import { bio, jobTitle, name, url } from "@/data";
 
@@ -8,7 +8,10 @@ import Footer from "./components/Footer";
 
 import "./globals.css";
 
-const mulish = Mulish({ subsets: ["latin"], weight: ["400", "500", "600"] });
+const firaCode = Fira_Code({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+});
 
 const description = `${jobTitle} ${bio}`;
 
@@ -54,17 +57,11 @@ export default function RootLayout({
           data-domain="pratikmane.netlify.app"
           src="https://plausible.io/js/script.js"
         ></script>
-
-        {/* <Script
-          data-domain="pratikmane.netlify.app"
-          src="https://plausible.io/js/script.js"
-          strategy="afterInteractive"
-        /> */}
       </head>
       <body>
         <main
           className="w-full md:max-w-3xl md:mx-auto flex h-screen min-h-screen flex-col"
-          style={mulish.style}
+          style={firaCode.style}
         >
           <header>
             <Navbar />

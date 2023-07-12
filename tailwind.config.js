@@ -6,5 +6,8 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx}",
     "./src/app/**/*.{js,ts,jsx,tsx}",
   ],
-  plugins: [require("tailwind-dracula")("dracula")],
+  plugins: [
+    require("tailwind-dracula")("dracula"),
+    require("@tailwindcss/typography"),
+  ],
 };

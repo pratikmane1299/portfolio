@@ -17,7 +17,6 @@ function Navbar() {
       <nav className="sticky top-4 z-10 px-4 py-4 w-full flex items-center justify-between">
         <Link
           href={"/"}
-          style={raleway.style}
           className="text-xl md:text-2xl font-medium tracking-wider leading-4"
         >
           {"<Pratik />"}
