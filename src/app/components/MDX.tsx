@@ -1,11 +1,7 @@
-import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
-import { MDXComponents } from "mdx/types";
-import remarkGfm from "remark-gfm";
-import rehypeHighlight from "rehype-highlight/lib";
-
 import { classNames } from "@/utils";
+import { MDXComponents } from "mdx/types";
 
-const components: MDXComponents = {
+export const components: MDXComponents = {
   h1: ({ className, ...props }: any) => (
     <h1
       className={classNames(
@@ -79,7 +75,10 @@ const components: MDXComponents = {
     />
   ),
   li: ({ className, ...props }: any) => (
-    <li className={classNames("mt-2 text-sm sm:text-base", className)} {...props} />
+    <li
+      className={classNames("mt-2 text-sm sm:text-base", className)}
+      {...props}
+    />
   ),
   blockquote: ({ className, ...props }: any) => (
     <blockquote
@@ -158,19 +157,3 @@ const components: MDXComponents = {
   //   />
   // ),
 };
-
-export default function MDXRenderer(props: MDXRemoteProps) {
-  // @ts-expect-error RSC
-  return (
-    <MDXRemote
-      options={{
-        mdxOptions: {
-          remarkPlugins: [remarkGfm],
-          rehypePlugins: [rehypeHighlight],
-        },
-      }}
-      components={components}
-      {...props}
-    />
-  );
-}

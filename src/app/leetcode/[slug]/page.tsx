@@ -1,13 +1,16 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight/lib";
 
-import { getLeetcodeProblemBySlug } from "@/server";
+import { getAllLeetcodeProblemsSlug, getLeetcodeProblemBySlug } from "@/server";
 
 import DifficultyTag from "@/app/components/DifficultyTag";
-import MDXRenderer from "@/app/components/MDXRenderer";
+import { components } from "@/app/components/MDX";
 import Tag from "@/app/components/Tag";
 
-import 'highlight.js/styles/github-dark-dimmed.css';
+import "highlight.js/styles/github-dark-dimmed.css";
 
 type Props = {
   params: { slug: string };
@@ -24,6 +27,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: problem.title,
     keywords: problem.tags.map((tag) => tag.tag.name).join(","),
   };
+}
+
+export async function generateStaticParams() {
+  const problems = await getAllLeetcodeProblemsSlug();
+
+  return problems.map((problem) => ({
+    slug: problem.slug,
+  }));
 }
 
 export default async function LeetcodeProblem({
@@ -51,7 +62,16 @@ export default async function LeetcodeProblem({
 
       <article className="my-5">
         <div className="leetcode-problem">
-          <MDXRenderer source={`${problem?.description} \n ${problem?.code}`} />
+          <MDXRemote
+            options={{
+              mdxOptions: {
+                remarkPlugins: [remarkGfm],
+                rehypePlugins: [rehypeHighlight],
+              },
+            }}
+            components={components}
+            source={`${problem?.description} \n ${problem?.code}`}
+          />
         </div>
       </article>
 

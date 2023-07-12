@@ -1,8 +1,6 @@
-"use server";
-
 import prisma from "./lib/prisma";
 import redis from "./lib/redis";
-import { DifficultType, LeetCodeTableProblemsResType, TagType } from "./types";
+import { DifficultType, LeetCodeTableProblemsResType, LeetcodeProblemDetailType, LeetcodeProblemsAllSlugsResType, TagType } from "./types";
 import { generateQueryHashKey, splitString } from "./utils";
 
 export async function getRecentLeetcodeProblems() {
@@ -132,8 +130,19 @@ export async function getAllDifficulty(): Promise<DifficultType[]> {
   return (await redis.get("DIFFICULTIES")) as DifficultType[];
 }
 
-export async function getLeetcodeProblemBySlug(slug: string) {
-	return await prisma.question.findFirst({
+export async function getLeetcodeProblemBySlug(
+  slug: string
+): Promise<LeetcodeProblemDetailType | null> {
+  const KEY_PREFIX = "problem-page-";
+  const cacheKey = KEY_PREFIX + slug;
+
+  const dataFromCache = (await redis.get(
+    cacheKey
+  )) as LeetcodeProblemDetailType;
+
+  if (dataFromCache !== null) return dataFromCache;
+
+  const problem = (await prisma.question.findFirst({
     where: {
       slug: {
         equals: slug,
@@ -161,5 +170,30 @@ export async function getLeetcodeProblemBySlug(slug: string) {
         },
       },
     },
-  });
+  })) as LeetcodeProblemDetailType;
+
+  await redis.set(cacheKey, JSON.stringify(problem), { ex: 604_800 });
+
+  return problem;
+}
+
+export async function getAllLeetcodeProblemsSlug(): Promise<LeetcodeProblemsAllSlugsResType> {
+  const cacheKey = "ALL_PROBLEMS_SLUGS";
+
+  const allSlugsFromCache = (await redis.get(
+    cacheKey
+  )) as LeetcodeProblemsAllSlugsResType;
+
+  if (allSlugsFromCache !== null) return allSlugsFromCache;
+
+  const allSlugsRes = (await prisma.question.findMany({
+    select: {
+      id: true,
+      slug: true,
+    },
+  })) as LeetcodeProblemsAllSlugsResType;
+
+  await redis.set(cacheKey, JSON.stringify(allSlugsRes), { ex: 86400 });
+
+  return allSlugsRes;
 }

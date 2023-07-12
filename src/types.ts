@@ -45,3 +45,20 @@ export type TagType = {
 	name: string;
 	slug: string;
 };
+
+export type LeetcodeProblemDetailType = {
+	id: number;
+	number: number;
+	title: string;
+	description: string;
+	code: string;
+	difficulty: {
+		level: string;
+	};
+	tags: LeetcodeTableProblemTagType[]
+}
+
+export type LeetcodeProblemsAllSlugsResType = {
+  id: number;
+  slug: string;
+}[];

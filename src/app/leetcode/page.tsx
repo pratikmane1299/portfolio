@@ -29,7 +29,9 @@ export default async function Leetcode({
         </h1>
 
         <div className="mt-5">
-          <LeetcodeFilters tags={tags} difficulties={difficulties} />
+          <React.Suspense fallback={<div>placeholder</div>}>
+            <LeetcodeFilters tags={tags} difficulties={difficulties} />
+          </React.Suspense>
 
           {/* streaming problems table */}
           <React.Suspense fallback={<LeetcodeProblemsTableSkeleton />}>
