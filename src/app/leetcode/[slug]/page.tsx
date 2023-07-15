@@ -60,7 +60,7 @@ export default async function LeetcodeProblem({
         />
       </div>
 
-      <article className="my-5 prose dark:prose-invert">
+      <article className="my-5">
         <div className="leetcode-problem">
           <MDXRemote
             options={{

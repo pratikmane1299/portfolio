@@ -59,7 +59,7 @@ export const components: MDXComponents = {
   p: ({ className, ...props }: any) => (
     <p
       className={classNames(
-        "text-sm sm:text-base tracking-wide font-normal break-all leading-7 [&:not(:first-child)]:mt-6",
+        "text-xs sm:text-sm tracking-wide font-normal break-words whitespace-break-spaces leading-7 [&:not(:first-child)]:mt-6",
         className
       )}
       {...props}
@@ -141,19 +141,19 @@ export const components: MDXComponents = {
   pre: ({ className, ...props }: any) => (
     <pre
       className={classNames(
-        "overflow-x-auto text-sm sm:text-base rounded-lg bg-zinc-900",
+        "overflow-x-auto text-xs sm:text-sm rounded-lg bg-zinc-900",
         className
       )}
       {...props}
     />
   ),
-  // code: ({ className, ...props }: any) => (
-  //   <code
-  //     className={classNames(
-  //       "relative rounded py-[0.2rem] px-[0.3rem] font-mono text-sm text-dracula-darker-100",
-  //       className
-  //     )}
-  //     {...props}
-  //   />
-  // ),
+  code: ({ className, ...props }: any) => (
+    <code
+      className={classNames(
+        "relative rounded py-[0.2rem] px-[0.3rem] font-mono text-xs sm:text-sm bg-dracula-darker-700 text-dracula-darker-50",
+        className
+      )}
+      {...props}
+    />
+  ),
 };
