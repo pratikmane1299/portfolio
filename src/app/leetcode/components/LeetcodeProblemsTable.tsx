@@ -7,7 +7,7 @@ import { getLeetcodeProblems } from "@/server";
 import DifficultyTag from "@/app/components/DifficultyTag";
 import Tag from "@/app/components/Tag";
 import Pagination from "@/app/components/Pagination";
-import NoDataIcon from "./NoDataIcon";
+import NotFoundIcon from "../../components/404Icon";
 
 export default function LeetcodeProblemsTable({
   searchParams,
@@ -82,7 +82,7 @@ export default function LeetcodeProblemsTable({
                 <td colSpan={4} className="py-2 px-3">
                   <div className="py-10 flex items-center justify-center">
                     <div className="flex flex-col">
-                      <NoDataIcon />
+                      <NotFoundIcon />
                       <span className="text-xs font-medium">
                         No problems found, matching selected filters.
                       </span>
