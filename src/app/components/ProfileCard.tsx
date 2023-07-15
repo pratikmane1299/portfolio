@@ -11,15 +11,15 @@ const raleway = Raleway({ subsets: ["latin"], weight: ["600"] });
 function ProfileCard() {
   return (
     <section id="/" className="px-4 py-32 w-full flex flex-col">
-      <h1 style={raleway.style} className="block mb-4 tracking-wider">
-        <span className="block mb-1 text-xs md:text-base font-medium tracking-wider">
+      <h1 style={raleway.style} className="flex items-center space-x-3 mb-4 tracking-normal sm:tracking-wider">
+        <span className="mb-1 text-xs md:text-base font-medium tracking-wider">
           {`Hey there, I'm`}
         </span>
-        <span className="text-xl md:text-3xl px-2 block bg-dracula-pink-400 w-fit text-white">
+        <span className="text-xl md:text-3xl px-2 bg-dracula-pink-400 w-fit text-white">
           {name}
         </span>
       </h1>
-      <p className="block text-xs md:text-base font-medium tracking-wider leading-7">
+      <p className="block text-xs md:text-base font-medium tracking-normal sm:tracking-wider leading-7">
         <span className="inline-block mr-2 border-b border-dracula-pink-400">
           {jobTitle}
         </span>

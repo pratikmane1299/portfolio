@@ -46,7 +46,7 @@ function Work() {
                     <span>Mumbai, India</span>
                   </div>
                 </div>
-                <p className="mt-2 text-gray-300 text-xs md:text-sm font-medium tracking-wide leading-6">
+                <p className="mt-2 text-gray-300 text-xs md:text-sm font-medium leading-6">
                   {exp.description}
                 </p>
               </div>

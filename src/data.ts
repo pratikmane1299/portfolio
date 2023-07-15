@@ -3,7 +3,7 @@ export const githubProfileURL = `https://github.com/pratikmane1299/`;
 export const email = 'pratik.mane1299@gmail.com';
 export const name = 'Pratik Mane';
 export const jobTitle = "Software Engineer";
-export const bio = `at MakeStories | Football fan | Tech enthusiast | Building innovative
+export const bio = `| Football fan | Tech enthusiast | Building innovative
 software solutions | Committed to excellence & continuous learning.`;
 export const url = 'https://pratikmane.netlify.app';
 
