@@ -11,6 +11,7 @@ import { components } from "@/app/components/MDX";
 import Tag from "@/app/components/Tag";
 
 import "highlight.js/styles/github-dark-dimmed.css";
+import Breadcrumbs from "@/app/components/Breadcrumbs";
 
 type Props = {
   params: { slug: string };
@@ -48,7 +49,15 @@ export default async function LeetcodeProblem({
 
   return (
     <div className="px-4 flex flex-col">
-      <div className="mt-10 mb-5 flex space-x-2">
+      <div className="mt-10 mb-5 flex flex-col">
+        <Breadcrumbs
+          pages={[
+            { label: "Home", href: "/" },
+            { label: "Leetcode", href: "/leetcode" },
+            { label: problem.title, href: "" },
+          ]}
+        />
+
         <h1 className="text-lg font-medium sm:text-xl sm:font-semibold leading-8 tracking-wide">
           {`${problem?.number}. ${problem?.title}`}
         </h1>

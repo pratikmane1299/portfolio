@@ -7,6 +7,7 @@ import { DifficultType, TagType } from "@/types";
 import LeetcodeProblemsTable from "./components/LeetcodeProblemsTable";
 import LeetcodeFilters from "./components/LeetcodeFilters";
 import LeetcodeProblemsTableSkeleton from "./components/LeetcodeProblemsTableSkeleton";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Leetcode problems",
@@ -22,8 +23,14 @@ export default async function Leetcode({
   const tags: TagType[] = await getAllTagsForFilter();
 
   return (
-    <div className="my-16 flex flex-col ">
+    <div className="my-10 flex flex-col ">
       <section className="px-4 w-full">
+        <Breadcrumbs
+          pages={[
+            { label: "Home", href: "/" },
+            { label: "Leetcode", href: "" },
+          ]}
+        />
         <h1 className="text-lg md:text-xl font-semibold leading-6 tracking-wide">
           Leetcode Problems
         </h1>
