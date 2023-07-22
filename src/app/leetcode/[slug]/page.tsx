@@ -9,9 +9,10 @@ import { getAllLeetcodeProblemsSlug, getLeetcodeProblemBySlug } from "@/server";
 import DifficultyTag from "@/app/components/DifficultyTag";
 import { components } from "@/app/components/MDX";
 import Tag from "@/app/components/Tag";
+import Breadcrumbs from "@/app/components/Breadcrumbs";
+import Views from "../views/components/Views";
 
 import "highlight.js/styles/github-dark-dimmed.css";
-import Breadcrumbs from "@/app/components/Breadcrumbs";
 
 type Props = {
   params: { slug: string };
@@ -62,11 +63,13 @@ export default async function LeetcodeProblem({
           {`${problem?.number}. ${problem?.title}`}
         </h1>
       </div>
-      <div className="mb-3">
+      <div className="mb-3 flex items-center space-x-2">
         <DifficultyTag
           color="green"
           difficulty={problem?.difficulty.level || ""}
         />
+
+        <Views problemId={problem.id} />
       </div>
 
       <article className="my-5">

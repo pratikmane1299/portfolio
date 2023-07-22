@@ -5,6 +5,7 @@ import { bio, jobTitle, name, url } from "@/data";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Providers from "@/Providers";
 
 import "./globals.css";
 
@@ -63,12 +64,14 @@ export default function RootLayout({
           className="w-full md:max-w-3xl md:mx-auto flex h-screen min-h-screen flex-col"
           style={firaCode.style}
         >
-          <header>
-            <Navbar />
-          </header>
-          {children}
-          {/* footer */}
-          <Footer />
+          <Providers>
+            <header>
+              <Navbar />
+            </header>
+            {children}
+            {/* footer */}
+            <Footer />
+          </Providers>
         </main>
       </body>
     </html>
