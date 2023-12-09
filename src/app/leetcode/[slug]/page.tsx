@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight/lib";
@@ -44,6 +44,7 @@ export default async function LeetcodeProblem({
 }: {
   params: { slug: string };
 }) {
+  redirect('/');
   const problem = await getLeetcodeProblemBySlug(slug);
 
   if (problem === null) return notFound();
@@ -55,7 +56,7 @@ export default async function LeetcodeProblem({
           pages={[
             { label: "Home", href: "/" },
             { label: "Leetcode", href: "/leetcode" },
-            { label: problem.title, href: "" },
+            { label: problem?.title || '', href: "" },
           ]}
         />
 
@@ -69,7 +70,7 @@ export default async function LeetcodeProblem({
           difficulty={problem?.difficulty.level || ""}
         />
 
-        <Views problemId={problem.id} />
+        <Views problemId={problem?.id || 0} />
       </div>
 
       <article className="my-5">

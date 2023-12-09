@@ -16,7 +16,7 @@ export default async function Home() {
       {/* projects */}
       <Projects />
       {/* leetcode */}
-      <ErrorBoundary
+      {/* <ErrorBoundary
         fallback={
           <div className="my-5 text-center text-xs md:text-sm font-normal tracking-wide">
             Could not find leetcode problems
@@ -24,7 +24,7 @@ export default async function Home() {
         }
       >
         <Leetcode />
-      </ErrorBoundary>
+      </ErrorBoundary> */}
     </React.Fragment>
   );
 }

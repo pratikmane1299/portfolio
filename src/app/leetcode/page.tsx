@@ -1,5 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
+import { redirect } from 'next/navigation';
 
 import { getAllDifficulty, getAllTagsForFilter } from "@/server";
 import { DifficultType, TagType } from "@/types";
@@ -19,6 +20,8 @@ export default async function Leetcode({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
+  redirect('/');
+
   const difficulties: DifficultType[] = await getAllDifficulty();
   const tags: TagType[] = await getAllTagsForFilter();
 
