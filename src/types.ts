@@ -1,3 +1,5 @@
+import { ReactElement } from "react";
+
 export type LeetCodeProblemWidgetType = {
   id: number;
   number: number;
@@ -62,3 +64,39 @@ export type LeetcodeProblemsAllSlugsResType = {
   id: number;
   slug: string;
 }[];
+
+export type GithubIssueType = {
+  title: string;
+  body: string;
+  id: number;
+  user: {
+    login: string;
+    avatar_url: string;
+    id: number;
+  }
+  labels: {
+    name: string;
+    id: number;
+  }[],
+  created_at: string;
+  updated_at: string;
+}
+
+export type BlogFrontMatterType = { title: string; description: string, tags: string; slug: string };
+
+export type BlogPostType  = {
+  frontmatter: BlogFrontMatterType,
+  title: string;
+  description?: string;
+  content: string;
+  compiledContent: ReactElement;
+  slug: string;
+  tags: string[];
+  user: {
+    login: string;
+    avatarUrl: string;
+    id: number;
+  };
+  createdAt: string;
+  updatedAt: string;
+}

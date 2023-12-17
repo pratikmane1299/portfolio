@@ -6,6 +6,9 @@ export const jobTitle = "Software Engineer";
 export const bio = `| Football fan | Tech enthusiast | Building innovative
 software solutions | Committed to excellence & continuous learning.`;
 export const url = 'https://pratikmane.netlify.app';
+export const githubUser = 'pratikmane1299';
+export const repo = 'portfolio';
+export const issuesUrl = `https://api.github.com/repos/${githubUser}/${repo}/issues?creator=${githubUser}&state=all`;
 
 export const navLinks = [
   {
@@ -16,6 +19,7 @@ export const navLinks = [
   //   href: "/leetcode",
   //   label: "Leetcode",
   // },
+  { label: 'Blog', href: '/blog' }
 ];
 
 export const work = [

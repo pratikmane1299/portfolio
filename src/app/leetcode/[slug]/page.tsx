@@ -1,18 +1,15 @@
 import { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import remarkGfm from "remark-gfm";
-import rehypeHighlight from "rehype-highlight/lib";
 
 import { getAllLeetcodeProblemsSlug, getLeetcodeProblemBySlug } from "@/server";
 
 import DifficultyTag from "@/app/components/DifficultyTag";
-import { components } from "@/app/components/MDX";
 import Tag from "@/app/components/Tag";
 import Breadcrumbs from "@/app/components/Breadcrumbs";
 import Views from "../views/components/Views";
 
 import "highlight.js/styles/github-dark-dimmed.css";
+import MDXWrapper from "@/app/components/MDXWrapper";
 
 type Props = {
   params: { slug: string };
@@ -44,7 +41,7 @@ export default async function LeetcodeProblem({
 }: {
   params: { slug: string };
 }) {
-  redirect('/');
+  // redirect('/');
   const problem = await getLeetcodeProblemBySlug(slug);
 
   if (problem === null) return notFound();
@@ -74,17 +71,8 @@ export default async function LeetcodeProblem({
       </div>
 
       <article className="my-5">
-        <div className="leetcode-problem">
-          <MDXRemote
-            options={{
-              mdxOptions: {
-                remarkPlugins: [remarkGfm],
-                rehypePlugins: [rehypeHighlight],
-              },
-            }}
-            components={components}
-            source={`${problem?.description} \n ${problem?.code}`}
-          />
+        <div className="leetcode-problem prose dark:prose-invert">
+          <MDXWrapper source={`${problem?.description} \n ${problem?.code}`} />
         </div>
       </article>
 

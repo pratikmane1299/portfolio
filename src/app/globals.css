@@ -17,8 +17,11 @@ body {
 	color: #f8f8f2;
 }
 
-.leetcode-problem pre > code {
-	@apply break-words rounded-none border-0 bg-transparent p-0 text-dracula-darker-100;
+/* pre code {
+	@apply break-words rounded-none border-0 bg-transparent p-0 ;
 	counter-reset: line;
 	box-decoration-break: clone;
+} */
+pre .hljs {
+	background: transparent;
 }

@@ -12,11 +12,10 @@ export function calculateExperience(fromDate: string, toDate: string) {
   const yearsOfExperience = Math.floor(internalInMonths) / 12;
   const monthsOfExperience = internalInMonths % 12;
 
-  return `${
-    yearsOfExperience >= 1
+  return `${yearsOfExperience >= 1
       ? `${yearsOfExperience.toFixed(0)} yr ${monthsOfExperience ? "," : ""}`
       : ""
-  }${monthsOfExperience ? `${monthsOfExperience} m` : ""}`;
+    }${monthsOfExperience ? `${monthsOfExperience} m` : ""}`;
 }
 
 export function formatExperience(date: string) {
@@ -139,4 +138,20 @@ export function generateQueryHashKey(params: Record<string, any>) {
   }
 
   return "";
+}
+
+export function slugify(str: string) {
+  str = str.trim();
+  str = str.toLowerCase();
+
+  str = str.replace(/[^a-z0-9 -]/gi, '')
+  str = str.replace(/\s+/gi, '-')
+  str = str.replace(/-+/gi, '-');
+
+  return str;
+}
+
+export function formatDate(date: string) {
+  const parsed = new Date(date);
+  return parsed.toLocaleDateString('en-us', { month: 'short', year: 'numeric', day: '2-digit' })
 }
