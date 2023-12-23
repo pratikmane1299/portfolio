@@ -70,6 +70,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
 			<div className="flex gap-2 flex-wrap">
 				{post?.tags.map((tag, idx: number) => (
 					<span
+						key={idx}
 						className={classNames(
 							"px-1.5 py-1 md:px-2 md:py-1.5 rounded md:rounded-md text-xs text-white tracking-wide font-normal",
 							'bg-dracula-dark-600 hover:bg-dracula-darker-700')}
