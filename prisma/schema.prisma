@@ -3,9 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider          = "postgresql"
-  url               = env("DATABASE_URL")
-  directUrl         = env("DIRECT_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Tag {
@@ -53,4 +53,10 @@ model QuestionViews {
   id         Int      @id @default(autoincrement())
   question   Question @relation(fields: [questionId], references: [id])
   questionId Int
+}
+
+model PostViews {
+  id    Int    @id @default(autoincrement())
+  slug  String @db.VarChar(255)
+  views Int
 }

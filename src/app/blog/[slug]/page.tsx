@@ -7,6 +7,7 @@ import { classNames } from '@/utils';
 
 import Breadcrumbs from '@/app/components/Breadcrumbs';
 import "highlight.js/styles/github-dark-dimmed.css";
+import PostViews from './_components/Views';
 
 async function getPostData(slug: string) {
 	const [postList, post] = await Promise.all([getAllPosts(), getPostBySlug(slug)]);
@@ -70,6 +71,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
 			<div>
 				<span className='text-xs md:text-sm'>Published on: {new Date(post.updatedAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric', day: '2-digit' })}</span>
 				{' '}|{' '}<span className='text-xs md:text-sm'>{readingDuration(post.content, { wordsPerMinute: 150, emoji: false })}</span>
+				{' '}|<PostViews slug={params.slug} />
 			</div>
 
 			{post.description && (
