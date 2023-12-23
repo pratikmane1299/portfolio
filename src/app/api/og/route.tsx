@@ -1,13 +1,11 @@
 import { name } from "@/data";
 import { ImageResponse } from "next/server";
 
-export const alt = "Pratik Mane's portfolio ";
-export const size = {
+const alt = "Pratik Mane's portfolio ";
+const size = {
   width: 1200,
   height: 630,
 };
-
-export const contentType = "image/png";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
@@ -32,7 +30,7 @@ export async function GET(request: Request) {
             tw="text-white text-5xl font-medium block"
             style={{ fontFamily: "Raleway" }}
           >
-            {title ?? 'Pratik Mane\'s blog'}
+            {title ?? alt}
           </h1>
           <p tw="text-gray-400 text-xl font-medium w-[70%] tracking-normal">
             <span>{name}</span> | {date && <span>{new Date(date).toLocaleDateString('en-US', { month: 'short', year: 'numeric', day: '2-digit' })}</span>}
