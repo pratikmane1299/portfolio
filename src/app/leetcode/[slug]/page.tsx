@@ -28,13 +28,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export async function generateStaticParams() {
-  const problems = await getAllLeetcodeProblemsSlug();
+// export async function generateStaticParams() {
+//   const problems = await getAllLeetcodeProblemsSlug();
 
-  return problems.map((problem) => ({
-    slug: problem.slug,
-  }));
-}
+//   return problems.map((problem) => ({
+//     slug: problem.slug,
+//   }));
+// }
 
 export default async function LeetcodeProblem({
   params: { slug },
