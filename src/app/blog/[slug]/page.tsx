@@ -1,5 +1,6 @@
 import type { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation';
+import readingDuration from 'reading-duration';
 
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
 import { classNames } from '@/utils';
@@ -26,6 +27,14 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
 	if (post) {
 		return {
 			title: post.title,
+			openGraph: {
+				images: [`${process.env.SITE_URL}/api/og?title=${post.title}&date=${post.updatedAt}`],
+				type: 'article',
+				authors: ['Pratik Mane'],
+			},
+			alternates: {
+				canonical: `${process.env.SITE_URL}/blog/${post.title}`,
+			},
 			...(post.description ? { description: post.description } : {}),
 		};
 	}
@@ -44,7 +53,11 @@ export async function generateStaticParams() {
 export default async function BlogPost({ params }: { params: { slug: string } }) {
 	const { post } = await getPostData(params.slug);
 
+	console.log(post);
+
+
 	if (!post) notFound();
+
 
 	return <div className='px-4 flex flex-col'>
 		<div className='mt-10 mb-5 flex flex-col'>
@@ -54,13 +67,20 @@ export default async function BlogPost({ params }: { params: { slug: string } })
 				{ label: post.title, href: `/${post.slug}` }
 			]}
 			/>
-			<h1 className='text-3xl font-medium sm:text-4xl sm:font-semibold leading-8 tracking-wide'>{post.title}</h1>
 		</div>
-		{post.description && (
-			<div className="mb-3 flex items-center space-x-2">
-				<span>{post.description}</span>
+		<div className='mb-5'>
+			<h1 className='mb-1 md:mb-3 text-4xl font-semibold sm:text-5xl sm:font-bold leading-8 tracking-wide'>{post.title}</h1>
+			<div>
+				<span className='text-xs md:text-sm'>Published on: {new Date(post.updatedAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric', day: '2-digit' })}</span>
+				{' '}|{' '}<span className='text-xs md:text-sm'>{readingDuration(post.content, { wordsPerMinute: 150, emoji: false })}</span>
 			</div>
-		)}
+
+			{post.description && (
+				<div className="mt-5 flex items-center space-x-2">
+					<p className='mt-3 text-sm md:text-base '>{post.description.split('.')[0]}.</p>
+				</div>
+			)}
+		</div>
 		<article className="max-w-full prose prose-sm lg:prose-md 2xl:prose-lg prose-slate !prose-invert my-5">
 			{post.compiledContent}
 		</article>

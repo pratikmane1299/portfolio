@@ -11,7 +11,7 @@ const blogPosts: BlogPostType[] = [];
 
 export async function getAllPosts() {
 	if (blogPosts.length === 0) {
-		const res = await fetch(issuesUrl, { cache: 'no-store' })
+		const res = await fetch(issuesUrl, { cache: 'no-store', method: 'GET', headers: { 'Authorization': process.env.GITHUB_TOKEN || '' } })
 		const issues: GithubIssueType[] = await res.json();
 
 		if (Array.isArray(issues) && issues.length > 0) {
@@ -31,7 +31,7 @@ export async function getAllPosts() {
 						components: components,
 					});
 
-					let slug, title = issue?.title ?? frontmatter.title;
+					let slug, title = issue?.title ?? frontmatter.title, description = frontmatter?.description || '';
 					if (frontmatter.slug) {
 						slug = frontmatter.slug;
 					} else {
@@ -45,6 +45,7 @@ export async function getAllPosts() {
 					blogPosts.push({
 						frontmatter,
 						title,
+						description,
 						tags,
 						content: issue.body,
 						compiledContent: content,

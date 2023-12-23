@@ -3279,6 +3279,11 @@ readdirp@~3.6.0:
   dependencies:
     picomatch "^2.2.1"
 
+reading-duration@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.npmjs.org/reading-duration/-/reading-duration-1.1.2.tgz"
+  integrity sha512-rm/bVuqGCZ6Ox1R9lIkgOa5+PG96MDD5n8w62k/6+woRTGT3Wss76c/LBo9hBgpUVQSYqw2uSyshBKOksrQ7xA==
+
 regenerator-runtime@^0.13.11:
   version "0.13.11"
   resolved "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.11.tgz"
