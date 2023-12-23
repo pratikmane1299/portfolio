@@ -80,7 +80,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
 				</div>
 			)}
 		</div>
-		<article className="max-w-full prose prose-sm lg:prose-md 2xl:prose-lg prose-slate !prose-invert my-5">
+		<article className="max-w-full prose prose-sm lg:prose-md prose-slate !prose-invert my-5">
 			{post.compiledContent}
 		</article>
 
