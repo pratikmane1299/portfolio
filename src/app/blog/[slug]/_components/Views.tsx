@@ -13,7 +13,7 @@ function useGetPostViews(slug: string) {
 
 function useTrackPost(slug: string) {
 	return useMutation(() => {
-		return fetch(`/api/blog/${slug}/track`,{method: 'POST'}).then((res) => res.json());
+		return fetch(`/api/blog/${slug}/track`, { method: 'POST' }).then((res) => res.json());
 	});
 }
 
@@ -22,8 +22,12 @@ export default function PostViews({ slug }: { slug: string }) {
 	const { mutate: trackPost } = useTrackPost(slug);
 
 	useEffect(() => {
-		trackPost();
+		let timeout: ReturnType<typeof setTimeout>;
+
+		timeout = setTimeout(trackPost, 3000);
+
+		return () => clearTimeout(timeout);
 	}, []);
 
-	return data?.views?._count?.slug > 0 ? <span className="text-xs md:text-sm">{' '}Views: {data?.views?._count?.slug}</span> : null;
+	return data?.views?._count?.views > 0 ? <span className="text-xs md:text-sm">{' '}Views: {data?.views?._count?.views}</span> : null;
 }

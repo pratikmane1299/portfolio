@@ -14,6 +14,8 @@ export async function POST(request: Request, { params }: { params: { slug: strin
 
 		return NextResponse.json({ success: true });
 	} catch (error) {
+		console.log('error - ', error);
+		
 		return NextResponse.json({ success: false, message: "could not track post", })
 	}
 }
@@ -24,7 +26,7 @@ export async function GET(request: Request, { params }: { params: { slug: string
 	try {
 		const views = await prisma.postViews.aggregate({
 			_count: {
-				slug: true,
+				views: true,
 			},
 			where: {
 				slug,
@@ -33,6 +35,7 @@ export async function GET(request: Request, { params }: { params: { slug: string
 
 		return NextResponse.json({ success: true, views });
 	} catch (error) {
+		console.log('error - ', error);
 		return NextResponse.json({ success: false, message: 'post not found' });
 	}
 }

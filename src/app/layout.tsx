@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fira_Code } from "next/font/google";
+import Script from 'next/script';
 
 import { bio, jobTitle, name, url } from "@/data";
 
@@ -53,11 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script
-          defer
-          data-domain="pratikmane.netlify.app"
-          src="https://plausible.io/js/script.js"
-        ></script>
+        <Script src="https://umami-analytics-service.onrender.com/script.js" data-website-id={process.env.ANALYTICS_WEBSITE_ID}></Script>
       </head>
       <body>
         <main
