@@ -58,7 +58,7 @@ export async function getAllPosts() {
 						updatedAt: issue.updated_at,
 					});
 				}
-				
+
 			}
 		}
 	}
