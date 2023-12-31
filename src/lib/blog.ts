@@ -5,13 +5,55 @@ import rehypeHighlight from 'rehype-highlight/lib';
 import { slugify } from "@/utils";
 import { BlogFrontMatterType, BlogPostType, GithubIssueType } from '@/types';
 import { components } from '@/app/components/MDX';
-import { githubUser, issuesUrl } from '@/data';
+import { githubUser, repo } from '@/data';
+import { env } from '@/env.mjs';
+import redis from './redis';
 
-const blogPosts: BlogPostType[] = [];
+async function parseIssue(issue: any): Promise<BlogPostType> {
+	const { content, frontmatter } = await compileMDX<BlogFrontMatterType>({
+		source: issue.body,
+		options: {
+			parseFrontmatter: true, mdxOptions: {
+				remarkPlugins: [remarkGfm],
+				rehypePlugins: [rehypeHighlight],
+			},
+		},
+		components: components,
+	});
+
+	let slug, title = issue?.title ?? frontmatter.title, description = frontmatter?.description || '';
+	if (frontmatter.slug) {
+		slug = frontmatter.slug;
+	} else {
+		slug = slugify(title);
+	}
+
+	let tags: string[] = [];
+	if (frontmatter.tags)
+		tags = Array.isArray(frontmatter.tags) ? frontmatter.tags : frontmatter.tags.split(',').map(x => x.trim());
+
+	return {
+		frontmatter,
+		title,
+		description,
+		tags,
+		content: issue.body,
+		compiledContent: content,
+		slug,
+		user: {
+			login: issue.user.login,
+			id: issue.user.id,
+			avatarUrl: issue.user.avatar_url,
+		},
+		createdAt: issue.created_at,
+		updatedAt: issue.updated_at,
+	};
+}
 
 export async function getAllPosts() {
+	const blogPosts: BlogPostType[] = [];
 	if (blogPosts.length === 0) {
-		const res = await fetch(issuesUrl, { cache: 'no-store', method: 'GET', headers: { 'Authorization': process.env.GITHUB_TOKEN || '' } })
+		const res = await fetch(`${env.GITHUB_API_BASE_URL}/repos/${githubUser}/${repo}/issues?creator=${githubUser}&state=all`, { method: 'GET', headers: { 'Authorization': env.GITHUB_TOKEN || '' } })
 		const issues: GithubIssueType[] = await res.json();
 
 		if (Array.isArray(issues) && issues.length > 0) {
@@ -20,52 +62,34 @@ export async function getAllPosts() {
 
 				const isPublished = issue.labels?.find((label: any) => label.name?.toLowerCase() === 'published');
 				if (issue.user?.login === githubUser && isPublished) {
-					const { content, frontmatter } = await compileMDX<BlogFrontMatterType>({
-						source: issue.body,
-						options: {
-							parseFrontmatter: true, mdxOptions: {
-								remarkPlugins: [remarkGfm],
-								rehypePlugins: [rehypeHighlight],
-							},
-						},
-						components: components,
-					});
-
-					let slug, title = issue?.title ?? frontmatter.title, description = frontmatter?.description || '';
-					if (frontmatter.slug) {
-						slug = frontmatter.slug;
-					} else {
-						slug = slugify(title);
-					}
-
-					let tags: string[] = [];
-					if (frontmatter.tags)
-						tags = Array.isArray(frontmatter.tags) ? frontmatter.tags : frontmatter.tags.split(',').map(x => x.trim());
-
-					blogPosts.push({
-						frontmatter,
-						title,
-						description,
-						tags,
-						content: issue.body,
-						compiledContent: content,
-						slug,
-						user: {
-							login: issue.user.login,
-							id: issue.user.id,
-							avatarUrl: issue.user.avatar_url,
-						},
-						createdAt: issue.created_at,
-						updatedAt: issue.updated_at,
-					});
+					const parsedIssue = await parseIssue(issue);
+					blogPosts.push(parsedIssue);
 				}
-
 			}
 		}
 	}
 	return blogPosts;
 }
 
-export function getPostBySlug(slug: string) {
-	return blogPosts.find((post: any) => post.slug === slug);
+export async function getPost(slug: string) {
+	let post: BlogPostType | null = null;
+	try {
+		const issueNumber = await redis.get(slug);
+
+		if (issueNumber !== null) {
+			const res = await fetch(`${env.GITHUB_API_BASE_URL}/repos/${githubUser}/${repo}/issues/${issueNumber}`, { headers: { 'Authorization': env.GITHUB_TOKEN || '' } });
+			if (res.ok) {
+				const issue = await res.json();
+
+				const isPublished = issue.labels?.find((label: any) => label.name?.toLowerCase() === 'published');
+
+				if (issue.user?.login === githubUser && isPublished) {
+					post = await parseIssue(issue);
+				}
+			}
+		}
+	} catch (error) {
+		post = null;
+	}
+	return post;
 }

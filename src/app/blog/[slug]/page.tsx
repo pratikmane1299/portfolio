@@ -2,18 +2,13 @@ import type { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation';
 import readingDuration from 'reading-duration';
 
-import { getAllPosts, getPostBySlug } from "@/lib/blog";
+import { getAllPosts, getPost } from "@/lib/blog";
 import { classNames } from '@/utils';
+import { env } from '@/env.mjs';
 
 import Breadcrumbs from '@/app/components/Breadcrumbs';
-import "highlight.js/styles/github-dark-dimmed.css";
 import PostViews from './_components/Views';
-
-async function getPostData(slug: string) {
-	const [postList, post] = await Promise.all([getAllPosts(), getPostBySlug(slug)]);
-
-	return { postList, post };
-}
+import "highlight.js/styles/github-dark-dimmed.css";
 
 type Props = {
 	params: { slug: string }
@@ -23,20 +18,29 @@ type Props = {
 export async function generateMetadata({ params }: Props, parent: ResolvingMetadata): Promise<Metadata> {
 	const slug = params.slug;
 
-	const { post } = await getPostData(slug);
+	const post = await getPost(slug);
 
 	if (post) {
+		const description = (post.description ? { description: post.description } : {});
 		return {
 			title: post.title,
+			...description,
 			openGraph: {
-				images: [`${process.env.SITE_URL}/api/og?title=${post.title}&date=${post.updatedAt}`],
+				title: post.title,
+				...description,
+				images: [`${env.SITE_URL}/api/og?title=${post.title}&date=${post.createdAt}&page=blog`],
 				type: 'article',
 				authors: ['Pratik Mane'],
 			},
-			alternates: {
-				canonical: `${process.env.SITE_URL}/blog/${post.title}`,
+			twitter: {
+				title: post.title,
+				...description,
+				card: 'summary_large_image',
+				images: [`${env.SITE_URL}/api/og?title=${post.title}&date=${post.createdAt}&page=blog`],
 			},
-			...(post.description ? { description: post.description } : {}),
+			alternates: {
+				canonical: `${env.SITE_URL}/blog/${post.slug}`,
+			},
 		};
 	}
 
@@ -52,10 +56,9 @@ export async function generateStaticParams() {
 }
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {
-	const { post } = await getPostData(params.slug);
+	const post = await getPost(params.slug);
 
 	if (!post) notFound();
-
 
 	return <div className='px-4 flex flex-col'>
 		<div className='mt-10 mb-5 flex flex-col'>
@@ -84,20 +87,22 @@ export default async function BlogPost({ params }: { params: { slug: string } })
 			{post.compiledContent}
 		</article>
 
-		<section className="mb-5">
-			<span className="block mb-2 text-base font-medium">Related Tags</span>
-			<div className="flex gap-2 flex-wrap">
-				{post?.tags.map((tag, idx: number) => (
-					<span
-						key={idx}
-						className={classNames(
-							"px-1.5 py-1 md:px-2 md:py-1.5 rounded md:rounded-md text-xs text-white tracking-wide font-normal",
-							'bg-dracula-dark-600 hover:bg-dracula-darker-700')}
-					>
-						{tag}
-					</span>
-				))}
-			</div>
-		</section>
+		{post.tags?.length > 0 && (
+			<section className="mb-5">
+				<span className="block mb-2 text-base font-medium">Related Tags</span>
+				<div className="flex gap-2 flex-wrap">
+					{post?.tags.map((tag, idx: number) => (
+						<span
+							key={idx}
+							className={classNames(
+								"px-1.5 py-1 md:px-2 md:py-1.5 rounded md:rounded-md text-xs text-white tracking-wide font-normal",
+								'bg-dracula-dark-600 hover:bg-dracula-darker-700')}
+						>
+							{tag}
+						</span>
+					))}
+				</div>
+			</section>
+		)}
 	</div>
 }

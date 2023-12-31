@@ -8,6 +8,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Providers from "@/Providers";
 
+// import { env } from '../env.mjs';
+
 import "./globals.css";
 
 const firaCode = Fira_Code({
@@ -23,7 +25,6 @@ export const metadata: Metadata = {
     default: name,
   },
   description,
-  themeColor: "#fd55b6",
   metadataBase: new URL(`${url}`),
   alternates: {
     canonical: "/",
@@ -35,6 +36,7 @@ export const metadata: Metadata = {
     title: name,
     description,
     site: url,
+    images: [`${process.env.SITE_URL}/api/og/`],
   },
   openGraph: {
     title: name,
@@ -43,6 +45,7 @@ export const metadata: Metadata = {
     locale: "en-US",
     type: "website",
     url: url,
+    images: [`${process.env.SITE_URL}/api/og/`],
   },
 };
 

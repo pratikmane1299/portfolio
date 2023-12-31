@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
 import { formatDate } from "@/utils";
-import { BlogPostType } from "@/types";
 import { getAllPosts } from "@/lib/blog";
 
 import Breadcrumbs from "../components/Breadcrumbs";
