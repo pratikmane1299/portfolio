@@ -52,19 +52,17 @@ async function parseIssue(issue: any): Promise<BlogPostType> {
 
 export async function getAllPosts() {
 	const blogPosts: BlogPostType[] = [];
-	if (blogPosts.length === 0) {
-		const res = await fetch(`${env.GITHUB_API_BASE_URL}/repos/${githubUser}/${repo}/issues?creator=${githubUser}&state=all`, { method: 'GET', headers: { 'Authorization': env.GITHUB_TOKEN || '' } })
-		const issues: GithubIssueType[] = await res.json();
+	const res = await fetch(`${env.GITHUB_API_BASE_URL}/repos/${githubUser}/${repo}/issues?creator=${githubUser}&state=all`, { cache: 'no-store', method: 'GET', headers: { 'Authorization': env.GITHUB_TOKEN || '' } })
+	const issues: GithubIssueType[] = await res.json();
 
-		if (Array.isArray(issues) && issues.length > 0) {
-			for (let i = 0; i < issues.length; i++) {
-				const issue = issues[i];
+	if (Array.isArray(issues) && issues.length > 0) {
+		for (let i = 0; i < issues.length; i++) {
+			const issue = issues[i];
 
-				const isPublished = issue.labels?.find((label: any) => label.name?.toLowerCase() === 'published');
-				if (issue.user?.login === githubUser && isPublished) {
-					const parsedIssue = await parseIssue(issue);
-					blogPosts.push(parsedIssue);
-				}
+			const isPublished = issue.labels?.find((label: any) => label.name?.toLowerCase() === 'published');
+			if (issue.user?.login === githubUser && isPublished) {
+				const parsedIssue = await parseIssue(issue);
+				blogPosts.push(parsedIssue);
 			}
 		}
 	}

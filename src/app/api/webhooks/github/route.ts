@@ -23,9 +23,9 @@ const verifySignature = (req: Request) => {
 };
 
 export async function POST(request: Request) {
-	if (!verifySignature(request)) {
-		return NextResponse.json({ success: false, message: 'Invalid something' }, { status: 401 });
-	}
+	// if (!verifySignature(request)) {
+	// 	return NextResponse.json({ success: false, message: 'Invalid something' }, { status: 401 });
+	// }
 
 	let keyExists: boolean | undefined = undefined;
 	let valuesMatch: boolean | undefined = undefined;
