@@ -3,7 +3,23 @@ import Link from 'next/link';
 import { formatDate } from "@/utils";
 import { getAllPosts } from "@/lib/blog";
 
+const blogTitle = 'Pratik Mane\'s Blog';
+
+export const metadata: Metadata = {
+	title: blogTitle,
+	alternates: {
+		canonical: "/blog",
+	},
+	openGraph: {
+		title: blogTitle,
+	},
+	twitter: {
+		title: blogTitle,
+	},
+};
+
 import Breadcrumbs from "../components/Breadcrumbs";
+import { Metadata } from 'next';
 
 export default async function Blog() {
 
