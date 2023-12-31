@@ -8,7 +8,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Providers from "@/Providers";
 
-// import { env } from '../env.mjs';
+import { env } from '@/env.mjs';
 
 import "./globals.css";
 
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     title: name,
     description,
     site: url,
-    images: [`${process.env.SITE_URL}/api/og/`],
+    images: [`${env.SITE_URL}/api/og/`],
   },
   openGraph: {
     title: name,
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     locale: "en-US",
     type: "website",
     url: url,
-    images: [`${process.env.SITE_URL}/api/og/`],
+    images: [`${env.SITE_URL}/api/og/`],
   },
 };
 
@@ -57,7 +57,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <Script src="https://umami-analytics-service.onrender.com/script.js" data-website-id={process.env.ANALYTICS_WEBSITE_ID}></Script>
+        <Script src="https://umami-analytics-service.onrender.com/script.js" data-website-id={env.ANALYTICS_WEBSITE_ID}></Script>
       </head>
       <body>
         <main

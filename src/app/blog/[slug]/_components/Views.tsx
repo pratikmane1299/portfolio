@@ -24,7 +24,11 @@ export default function PostViews({ slug }: { slug: string }) {
 	useEffect(() => {
 		let timeout: ReturnType<typeof setTimeout>;
 
-		timeout = setTimeout(trackPost, 3000);
+		timeout = setTimeout(() => {
+			if (process.env.NODE_ENV === 'production') {
+				trackPost();
+			}
+		}, 3000);
 
 		return () => clearTimeout(timeout);
 	}, []);
