@@ -1,6 +1,8 @@
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight/lib";
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 import { slugify } from "@/utils";
 import { BlogFrontMatterType, BlogPostType, GithubIssueType } from "@/types";
@@ -16,7 +18,14 @@ async function parseIssue(issue: GithubIssueType): Promise<BlogPostType> {
       parseFrontmatter: true,
       mdxOptions: {
         remarkPlugins: [remarkGfm],
-        rehypePlugins: [rehypeHighlight],
+        rehypePlugins: [
+          rehypeHighlight,
+          rehypeSlug,
+          [
+            rehypeAutolinkHeadings,
+            { behavior: "wrap", properties: { class: "no-underline" } },
+          ],
+        ],
       },
     },
     components: components,
