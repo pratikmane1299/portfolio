@@ -8,9 +8,9 @@ export type LeetCodeProblemWidgetType = {
 };
 
 export enum DifficultyEnum {
-  EASY = 'Easy',
-	MEDIUM = 'Medium',
-	HARD = 'Hard',
+  EASY = "Easy",
+  MEDIUM = "Medium",
+  HARD = "Hard",
 }
 
 export type LeetcodeTableProblemTagType = {
@@ -21,7 +21,7 @@ export type LeetcodeTableProblemTagType = {
 };
 
 export type LeetcodeTableProblemType = {
-	id: number;
+  id: number;
   number: number;
   title: string;
   slug: string;
@@ -29,7 +29,7 @@ export type LeetcodeTableProblemType = {
     level: string;
   };
   tags: LeetcodeTableProblemTagType[];
-}
+};
 
 export type LeetCodeTableProblemsResType = {
   total: number;
@@ -43,27 +43,49 @@ export type DifficultType = {
 };
 
 export type TagType = {
-	id: number;
-	name: string;
-	slug: string;
+  id: number;
+  name: string;
+  slug: string;
 };
 
 export type LeetcodeProblemDetailType = {
-	id: number;
-	number: number;
-	title: string;
-	description: string;
-	code: string;
-	difficulty: {
-		level: string;
-	};
-	tags: LeetcodeTableProblemTagType[]
-}
+  id: number;
+  number: number;
+  title: string;
+  description: string;
+  code: string;
+  difficulty: {
+    level: string;
+  };
+  tags: LeetcodeTableProblemTagType[];
+};
 
 export type LeetcodeProblemsAllSlugsResType = {
   id: number;
   slug: string;
 }[];
+
+export type GithubReactionsBaseType = {
+	url: string;
+	total_count: number;
+}
+
+export type GithubEmojisType = {
+  "+1": number;
+  "-1": number;
+  laugh: number;
+  hooray: number;
+  heart: number;
+  confused: number;
+  rocket: number;
+  eyes: number;
+};
+
+export type GithubEmojisKeysType = keyof GithubEmojisType;
+
+export type GithubReactionsType = GithubReactionsBaseType & GithubEmojisType;
+
+export type GithubReactionsKeysType= keyof GithubReactionsType;
 
 export type GithubIssueType = {
   title: string;
@@ -73,21 +95,32 @@ export type GithubIssueType = {
     login: string;
     avatar_url: string;
     id: number;
-  }
+  };
   labels: {
     name: string;
     id: number;
-  }[],
+  }[];
   created_at: string;
   updated_at: string;
-}
+  reactions: GithubReactionsType;
+	html_url: string;
+	number: number;
+};
 
-export type BlogFrontMatterType = { title: string; description: string, tags: string; slug: string };
+export type BlogFrontMatterType = {
+  title: string;
+  description: string;
+  tags: string;
+  slug: string;
+};
 
-export type BlogPostType  = {
-  frontmatter: BlogFrontMatterType,
+export type BlogReactionsType = GithubReactionsBaseType & { emojis: any };
+
+export type BlogPostType = {
+  frontmatter: BlogFrontMatterType;
   title: string;
   description?: string;
+	issueNumber: number;
   content: string;
   compiledContent: ReactElement;
   slug: string;
@@ -99,4 +132,5 @@ export type BlogPostType  = {
   };
   createdAt: string;
   updatedAt: string;
-}
+  reactions: BlogReactionsType;
+};

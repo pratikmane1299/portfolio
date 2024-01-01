@@ -1,12 +1,9 @@
 "use client";
 import { useState } from "react";
-import { Raleway } from "next/font/google";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 import { navLinks } from "@/data";
-
-const raleway = Raleway({ subsets: ["latin"], weight: ["600"] });
 
 function Navbar() {
   const pathname = usePathname();
