@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Fira_Code } from "next/font/google";
-import Script from 'next/script';
+import Script from "next/script";
 
 import { bio, jobTitle, name, url } from "@/data";
 
@@ -8,7 +8,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Providers from "@/Providers";
 
-import { env } from '@/env.mjs';
+import { env } from "@/env.mjs";
 
 import "./globals.css";
 
@@ -28,6 +28,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(`${url}`),
   alternates: {
     canonical: "/",
+    types: {
+      "application/rss+xml": `${env.SITE_URL}/feed.xml`,
+    },
   },
   manifest: `${url}/site.webmanifest`,
   twitter: {
@@ -57,7 +60,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <Script src="https://umami-analytics-service.onrender.com/script.js" data-website-id={env.ANALYTICS_WEBSITE_ID}></Script>
+        <Script
+          src="https://umami-analytics-service.onrender.com/script.js"
+          data-website-id={env.ANALYTICS_WEBSITE_ID}
+        ></Script>
       </head>
       <body>
         <main
