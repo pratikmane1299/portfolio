@@ -37,7 +37,7 @@ export async function generateMetadata(
         title: post.title,
         ...description,
         images: [
-          `${env.SITE_URL}/api/og?title=${post.title}&date=${post.createdAt}&page=blog`,
+          `${env.SITE_URL}/api/og?title=${post.title}&date=${post.updatedAt}&page=blog`,
         ],
         type: "article",
         authors: ["Pratik Mane"],

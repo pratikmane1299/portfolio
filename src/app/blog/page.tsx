@@ -46,7 +46,7 @@ export default async function Blog() {
 							<li key={idx} className="relative -mx-4 hover:bg-dracula-darker-800 hover:rounded-md cursor-pointer transition-all duration-500 ease-in-out before:content-['»'] before:absolute before:left-[15px] before:top-[47%] before:transform before:-translate-y-1/2 before:text-white">
 								<Link href={`/blog/${post.slug}`} className="py-2 px-4 pl-8 text-xs md:text-sm font-medium flex justify-between items-center">
 									{post.title}
-									<time className="text-xs md:text-sm">{formatDate(post.createdAt)}</time>
+									<time className="text-xs md:text-sm">{formatDate(post.updatedAt)}</time>
 								</Link>
 							</li>
 						))}
