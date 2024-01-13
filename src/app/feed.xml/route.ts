@@ -19,6 +19,9 @@ export async function GET() {
 
   const posts = await getAllPosts();
 
+  console.log('posts - ', posts);
+  
+
   if (posts.length > 0) {
     posts.forEach((post) => {
       feed.item({
