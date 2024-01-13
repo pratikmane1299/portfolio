@@ -60,10 +60,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <Script
-          src="https://umami-analytics-service.onrender.com/script.js"
-          data-website-id={env.ANALYTICS_WEBSITE_ID}
-        ></Script>
+        {process.env.NODE_ENV === "production" && (
+          <Script
+            src="https://umami-analytics-service.onrender.com/script.js"
+            data-website-id={env.ANALYTICS_WEBSITE_ID}
+          ></Script>
+        )}
       </head>
       <body>
         <main
