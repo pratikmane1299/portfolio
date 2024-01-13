@@ -17,8 +17,8 @@ export default function Reactions({
   reactions: BlogReactionsType;
 }) {
   return (
-    <a href={reactions.url} target="_blank">
-      <span className="mr-2 text-base font-medium">Reactions:</span>
+    <a href={reactions.url} target="_blank" className="text-sm md:text-base font-medium">
+      <span className="mr-2">Reactions:</span>
       {reactions.total_count > 0
         ? Object.keys(reactions?.emojis)?.map((reaction: any, idx: number) => {
             if (

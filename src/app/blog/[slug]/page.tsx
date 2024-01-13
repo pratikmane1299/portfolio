@@ -125,7 +125,7 @@ export default async function BlogPost({
       <section className="mt-24 mb-10 w-full">
         {post.tags?.length > 0 && (
           <div className="mb-5">
-            <span className="block mb-2 text-base font-medium">
+            <span className="block mb-2 text-sm md:text-base font-medium">
               Related Tags
             </span>
             <div className="flex gap-2 flex-wrap">
