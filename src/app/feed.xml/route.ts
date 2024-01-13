@@ -20,8 +20,6 @@ export async function GET() {
 
     const posts = await getAllPosts();
 
-    console.log("posts - ", posts);
-
     if (posts.length > 0) {
       posts.forEach((post) => {
         feed.item({
@@ -34,15 +32,11 @@ export async function GET() {
       });
     }
 
-    console.log("feed - ", feed);
-
-    return new Response("hello");
-
-    // return new Response(feed.xml({ indent: true }), {
-    //   headers: {
-    //     "Content-Type": "application/xml; charset=utf-8",
-    //   },
-    // });
+    return new Response(feed.xml({ indent: true }), {
+      headers: {
+        "Content-Type": "application/xml; charset=utf-8",
+      },
+    });
   } catch (error) {
     console.log("error - ", error);
   }
