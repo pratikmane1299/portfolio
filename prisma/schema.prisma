@@ -31,33 +31,33 @@ model Question {
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
   title         String          @db.VarChar(255)
-  description   String          @db.Text
-  number        Int
+  description   String
   slug          String          @db.VarChar(255)
-  code          String          @db.Text
-  difficulty    Difficulty      @relation(fields: [difficultyId], references: [id])
   difficultyId  Int
+  number        Int
+  code          String
+  difficulty    Difficulty      @relation(fields: [difficultyId], references: [id])
   tags          QuestionTag[]
   QuestionViews QuestionViews[]
 }
 
 model QuestionTag {
   id         Int      @id @default(autoincrement())
-  question   Question @relation(fields: [questionId], references: [id])
   questionId Int
-  tag        Tag      @relation(fields: [tagId], references: [id])
   tagId      Int
+  question   Question @relation(fields: [questionId], references: [id])
+  tag        Tag      @relation(fields: [tagId], references: [id])
 }
 
 model QuestionViews {
   id         Int      @id @default(autoincrement())
-  question   Question @relation(fields: [questionId], references: [id])
   questionId Int
+  question   Question @relation(fields: [questionId], references: [id])
 }
 
 model PostViews {
-  id        Int      @id @default(autoincrement())
-  slug      String   @db.VarChar(255)
-  views     Int
-  createdAt DateTime @default(now())
+  id         Int      @id @default(autoincrement())
+  slug       String   @db.VarChar(255)
+  views      Int
+  created_at DateTime @default(now())
 }

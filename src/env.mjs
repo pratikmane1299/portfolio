@@ -13,5 +13,6 @@ export const env = createEnv({
 		REVALIDATE_SECRET_TOKEN: z.string(),
 		GITHUB_WEBHOOK_SECRET: z.string(),
 		GITHUB_API_BASE_URL: z.string().url(),
+		SOME_SECRET_TOKEN: z.string(),
 	},
 });
