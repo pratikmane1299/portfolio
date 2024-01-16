@@ -13,7 +13,9 @@ export default function ProtectedRoutesLayout({
   const router = useRouter();
   const { authState } = useAuthContext();
 
-  if (!authState.loggedIn) return router.push("/admin/login");
+  React.useEffect(() => {
+    if (!authState.loggedIn) return router.push("/admin/login");
+  }, [authState.loggedIn, router]);
 
   return children;
 }

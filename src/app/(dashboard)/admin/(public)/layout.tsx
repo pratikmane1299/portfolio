@@ -13,7 +13,9 @@ export default function PublicRoutesLayout({
   const router = useRouter();
   const { authState } = useAuthContext();
 
-  if (authState.loggedIn) return router.push("/admin/blog-analytics");
+  React.useEffect(() => {
+    if (authState.loggedIn) return router.push("/admin/blog-analytics");
+  }, [authState.loggedIn, router]);
 
   return children;
 }
