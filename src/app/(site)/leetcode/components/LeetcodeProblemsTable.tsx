@@ -7,7 +7,7 @@ import { getLeetcodeProblems } from "@/server";
 import DifficultyTag from "@/app/components/DifficultyTag";
 import Tag from "@/app/components/Tag";
 import Pagination from "@/app/components/Pagination";
-import NotFoundIcon from "../../components/404Icon";
+import NotFoundIcon from "../../../components/404Icon";
 
 export default function LeetcodeProblemsTable({
   searchParams,

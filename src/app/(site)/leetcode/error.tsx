@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 
-import ErrorIllustration from "../components/ErrorIllustration";
+import ErrorIllustration from "../../components/ErrorIllustration";
 
 export default function Error({ error }: { error: Error }) {
   useEffect(() => {

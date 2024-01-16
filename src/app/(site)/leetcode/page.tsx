@@ -8,7 +8,7 @@ import { DifficultType, TagType } from "@/types";
 import LeetcodeProblemsTable from "./components/LeetcodeProblemsTable";
 import LeetcodeFilters from "./components/LeetcodeFilters";
 import LeetcodeProblemsTableSkeleton from "./components/LeetcodeProblemsTableSkeleton";
-import Breadcrumbs from "../components/Breadcrumbs";
+import Breadcrumbs from "../../components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Leetcode problems",

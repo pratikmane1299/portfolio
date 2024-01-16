@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 	},
 };
 
-import Breadcrumbs from "../components/Breadcrumbs";
+import Breadcrumbs from "../../components/Breadcrumbs";
 import { Metadata } from 'next';
 
 export const revalidate = 86400;

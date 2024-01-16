@@ -1,5 +1,5 @@
 import React from "react";
-import NotFoundIcon from "./components/404Icon";
+import NotFoundIcon from "../components/404Icon";
 
 export default function NotFound() {
   return (
