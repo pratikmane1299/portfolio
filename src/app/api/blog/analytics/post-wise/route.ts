@@ -3,6 +3,12 @@ import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { env } from "@/env.mjs";
 
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization",
+};
+
 type PostWiseBlogViewsQueryType = {
   views: number;
   slug: string;
@@ -21,7 +27,7 @@ export async function GET(request: Request) {
     }
 
     const results = await prisma.$queryRaw<
-		PostWiseBlogViewsQueryType[]
+      PostWiseBlogViewsQueryType[]
     >`SELECT slug, count(views)::int as views from "PostViews" GROUP BY slug`;
 
     return NextResponse.json({ success: true, data: results });
@@ -29,4 +35,11 @@ export async function GET(request: Request) {
     console.log("error");
     return NextResponse.json({ success: true, data: [] }, { status: 400 });
   }
+}
+
+export async function OPTIONS(req: Request) {
+  return new Response(null, {
+    status: 204,
+    headers: corsHeaders,
+  });
 }

@@ -4,13 +4,13 @@ import Script from "next/script";
 
 import { bio, jobTitle, name, url } from "@/data";
 
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import Providers from "@/Providers";
 
 import { env } from "@/env.mjs";
 
-import "./globals.css";
+import "../globals.css";
 
 const firaCode = Fira_Code({
   subsets: ["latin"],
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default function PagesLayout({
   children,
 }: {
   children: React.ReactNode;

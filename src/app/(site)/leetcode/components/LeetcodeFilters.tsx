@@ -7,7 +7,7 @@ import useSerializeSearchParams from "@/hooks/useSerializeSearchParams";
 import { findFilter } from "@/utils";
 import { DifficultType, TagType } from "@/types";
 
-import Tag from "../../components/Tag";
+import Tag from "../../../components/Tag";
 
 type LeetcodeFiltersPropsType = {
   tags: TagType[];

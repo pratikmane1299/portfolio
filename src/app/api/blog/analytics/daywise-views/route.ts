@@ -22,7 +22,7 @@ export async function GET(request: Request) {
 
     const results = await prisma.$queryRaw<
       DayWiseBlogViewsQueryType[]
-    >`SELECT date(created_at) as date, count(views)::int as views from "PostViews" GROUP BY date`;
+    >`SELECT date(created_at) as date, count(views)::int as views from "PostViews" GROUP BY date ORDER BY date`;
 
     return NextResponse.json({ success: true, data: results });
   } catch (error) {
