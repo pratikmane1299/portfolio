@@ -53,3 +53,17 @@ export async function getPostWiseViews({ queryKey }: QueryKeyType) {
     throw error;
   }
 }
+
+export async function getStats() {
+  const res = await fetch(`/api/blog/analytics/stats`, {
+    method: "GET",
+    headers: {
+      "some-secret": env.NEXT_PUBLIC_SOME_SECRET_TOKEN,
+      "Content-Type": "application/json",
+    },
+  });
+
+  const results = await res.json();
+
+  return results?.data;
+}

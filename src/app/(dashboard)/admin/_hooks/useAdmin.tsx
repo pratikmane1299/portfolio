@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getDaywiseViews, getPostWiseViews } from "../_services/admin";
+import { getDaywiseViews, getPostWiseViews, getStats } from "../_services/admin";
 import useDateFilter from "./useDateFilter";
 
 export function useFetchPostViewsByDays() {
@@ -21,5 +21,13 @@ export function useFetcPostViewsBySlug() {
     queryKey: ["postwise-views", selectedDateFilter],
     queryFn: getPostWiseViews,
     staleTime: 60000,
+  });
+}
+
+export function useFetchStats() {
+  return useQuery({
+    queryKey: ["stats"],
+    queryFn: getStats,
+    staleTime: 600000,
   });
 }

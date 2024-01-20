@@ -15,7 +15,7 @@ const datesPreset: Record<DatesFilterType, string> = {
   today: "Today",
   yesterday: "Yesterday",
   "last-seven-days": "Last 7 days",
-  "last-thirty-days": "This Month",
+  "last-thirty-days": "Last 30 days",
 };
 
 const dates: Array<{ value: DatesFilterType; label: string }> = [
@@ -41,7 +41,7 @@ export default function Filters() {
   const { selectedDateFilter, setDateFilter } = useDateFilter();
 
   return (
-    <div className="mt-5 flex justify-end">
+    <div className="flex justify-end">
       <Select
         value={selectedDateFilter}
         onValueChange={(value: DatesFilterType) => setDateFilter(value)}
