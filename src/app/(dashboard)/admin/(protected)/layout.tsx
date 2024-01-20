@@ -13,22 +13,12 @@ export default function ProtectedRoutesLayout({
   const router = useRouter();
   const { authState } = useAuthContext();
 
-  console.log(
-    "protected routes layout authState.loggedIn - ",
-    authState.loggedIn
-  );
-
   React.useEffect(() => {
     if (!authState.loggedIn) return router.replace("/admin/login");
   }, [authState.loggedIn]);
 
   if (authState.loggedIn) {
     return children;
-    // return (
-    //   <div className="px-4 sm:px-6 lg:mx-auto lg:max-w-6xl w-full ">
-    //     {children}
-    //   </div>
-    // );
   }
 
   return <></>;
