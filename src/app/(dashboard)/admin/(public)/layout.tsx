@@ -13,8 +13,6 @@ export default function PublicRoutesLayout({
   const router = useRouter();
   const { authState } = useAuthContext();
 
-  console.log("public routes layout authState.loggedIn - ", authState.loggedIn);
-
   React.useEffect(() => {
     if (authState.loggedIn) return router.replace("/admin/blog-analytics");
   }, [authState.loggedIn]);
