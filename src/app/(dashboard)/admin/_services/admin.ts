@@ -1,14 +1,25 @@
-import { env } from "@/env.mjs";
+import { QueryKey } from "@tanstack/react-query";
 
-export async function getDaywiseViews() {
+import { env } from "@/env.mjs";
+import { DatesFilterType } from "@/types";
+
+type QueryKeyType = { queryKey: QueryKey };
+
+export async function getDaywiseViews({ queryKey }: QueryKeyType) {
+  const date = queryKey[1] as DatesFilterType;
+
+  const newSearchParams = new URLSearchParams({ date });
   try {
-    const res = await fetch(`/api/blog/analytics/daywise-views`, {
-      method: "GET",
-      headers: {
-        "some-secret": env.NEXT_PUBLIC_SOME_SECRET_TOKEN,
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      `/api/blog/analytics/daywise-views?${newSearchParams.toString()}`,
+      {
+        method: "GET",
+        headers: {
+          "some-secret": env.NEXT_PUBLIC_SOME_SECRET_TOKEN,
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     const results = await res.json();
 
@@ -18,15 +29,22 @@ export async function getDaywiseViews() {
   }
 }
 
-export async function getPostWiseViews() {
+export async function getPostWiseViews({ queryKey }: QueryKeyType) {
   try {
-    const res = await fetch(`/api/blog/analytics/post-wise`, {
-      method: "GET",
-      headers: {
-        "some-secret": env.NEXT_PUBLIC_SOME_SECRET_TOKEN,
-        "Content-Type": "application/json",
-      },
-    });
+    const date = queryKey[1] as DatesFilterType;
+
+    const newSearchParams = new URLSearchParams({ date });
+
+    const res = await fetch(
+      `/api/blog/analytics/post-wise?${newSearchParams.toString()}`,
+      {
+        method: "GET",
+        headers: {
+          "some-secret": env.NEXT_PUBLIC_SOME_SECRET_TOKEN,
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     const results = await res.json();
 

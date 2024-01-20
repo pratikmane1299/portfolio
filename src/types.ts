@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import * as z from "zod";
 
 export type LeetCodeProblemWidgetType = {
   id: number;
@@ -134,3 +135,12 @@ export type BlogPostType = {
   updatedAt: string;
   reactions: BlogReactionsType;
 };
+
+export const datesEnum = z.enum([
+  "today",
+  "yesterday",
+  "last-seven-days",
+  "last-thirty-days",
+]);
+
+export type DatesFilterType = z.infer<typeof datesEnum> & (string & {});

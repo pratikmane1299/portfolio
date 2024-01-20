@@ -1,4 +1,4 @@
-import { DifficultyEnum } from "./types";
+import { DatesFilterType, DifficultyEnum } from "./types";
 
 export function calculateExperience(fromDate: string, toDate: string) {
   const fDate = new Date(fromDate);
@@ -154,4 +154,35 @@ export function slugify(str: string) {
 export function formatDate(date: string) {
   const parsed = new Date(date);
   return parsed.toLocaleDateString('en-us', { month: 'short', year: 'numeric', day: '2-digit' })
+}
+
+export function parseFilterDate(date: Date) {
+  return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+}
+
+export function getToDateAndFromDateFromDateFilter(filter: DatesFilterType) {
+  let toDate = new Date(Date.now() + 1);
+  let fromDate = new Date();
+
+  switch (filter) {
+    case "yesterday":
+      fromDate.setDate(toDate.getDate() - 1);
+      break;
+
+    case "last-seven-days":
+      fromDate.setDate(toDate.getDate() - 7);
+      break;
+
+    case "last-thirty-days":
+      fromDate.setDate(toDate.getDate() - 30);
+      break;
+
+    default:
+      break;
+  }
+
+  return {
+    fromDate: `${parseFilterDate(fromDate)} 00:00:00`,
+    toDate: `${parseFilterDate(toDate)} 23:59:59`,
+  };
 }

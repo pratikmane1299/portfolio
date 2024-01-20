@@ -1,5 +1,4 @@
-"use client";
-
+import type { Metadata } from "next";
 import React from "react";
 import { Fira_Code } from "next/font/google";
 
@@ -15,6 +14,14 @@ const firaCode = Fira_Code({
   weight: ["400", "500", "600"],
 });
 
+export const metadata: Metadata = {
+  title: {
+    template: "%s | Admin Panel",
+    default: "Admin Panel",
+  },
+  description: "Admin panel for Pratik Manes blog.",
+};
+
 export default function AdminLayout({
   children,
 }: {
@@ -22,16 +29,13 @@ export default function AdminLayout({
 }) {
   return (
     <html>
-      <head>
-        <title>Admin Panel</title>
-      </head>
       <body style={firaCode.style}>
         <Providers>
           <AuthProvider>
             <header>
               <AdminPanelHeader />
             </header>
-            <main className="w-full px-6 3xl:max-w-4xl xl:mx-auto">
+            <main className="w-full px-6 lg:max-w-4xl lg:mx-auto">
               {children}
             </main>
             <Toaster />
