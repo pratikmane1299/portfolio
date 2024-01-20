@@ -51,7 +51,7 @@ export default function Filters() {
         </SelectTrigger>
         <SelectContent>
           {dates.map(({ value, label }) => (
-            <SelectItem key={value} value={value} on>
+            <SelectItem key={value} value={value}>
               {label}
             </SelectItem>
           ))}
