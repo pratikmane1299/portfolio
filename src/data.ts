@@ -5,6 +5,8 @@ export const name = 'Pratik Mane';
 export const jobTitle = "Software Engineer";
 export const bio = jobTitle + ` | Football fan | Tech enthusiast | Building innovative
 software solutions | Committed to excellence & continuous learning.`;
+export const bioWithoutJobTitle = `| Football fan | Tech enthusiast | Building innovative
+software solutions | Committed to excellence & continuous learning.`;
 export const url = 'https://pratikmane.netlify.app';
 export const githubUser = 'pratikmane1299';
 export const repo = 'portfolio';

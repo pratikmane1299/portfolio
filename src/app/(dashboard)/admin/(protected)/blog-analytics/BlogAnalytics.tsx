@@ -13,8 +13,10 @@ export default function BlogAnalytics() {
           <Stats />
           <Filters />
         </div>
-        <DayWiseViews />
-        <PostWiseViews />
+        <div className="divide-y divide-gray-300">
+          <DayWiseViews />
+          <PostWiseViews />
+        </div>
       </div>
     </div>
   );
