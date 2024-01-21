@@ -1,6 +1,14 @@
 import { Raleway } from "next/font/google";
 
-import { bio, email, githubProfileURL, jobTitle, name, twitterProfileURL } from "@/data";
+import {
+  bio,
+  bioWithoutJobTitle,
+  email,
+  githubProfileURL,
+  jobTitle,
+  name,
+  twitterProfileURL,
+} from "@/data";
 
 import Inbox from "./Inbox";
 import TwitterIcon from "./Twitter";
@@ -10,8 +18,14 @@ const raleway = Raleway({ subsets: ["latin"], weight: ["600"] });
 
 function ProfileCard() {
   return (
-    <section id="/" className="px-4 py-32 w-full flex flex-col">
-      <h1 style={raleway.style} className="flex items-center space-x-3 mb-4 tracking-normal sm:tracking-wider">
+    <section
+      id="/"
+      className="px-4 py-32 w-full flex flex-col translate-y-4 opacity-0 animate-fadein"
+    >
+      <h1
+        style={raleway.style}
+        className="flex items-center space-x-3 mb-4 tracking-normal sm:tracking-wider"
+      >
         <span className="mb-1 text-xs md:text-base font-medium tracking-wider">
           {`Hey there, I'm`}
         </span>
@@ -23,7 +37,7 @@ function ProfileCard() {
         <span className="inline-block mr-2 border-b border-dracula-pink-400">
           {jobTitle}
         </span>
-        {bio}
+        {bioWithoutJobTitle}
       </p>
 
       {/* social links */}

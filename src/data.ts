@@ -1,14 +1,19 @@
 export const twitterProfileURL = `https://twitter.com/Prateek88900`;
 export const githubProfileURL = `https://github.com/pratikmane1299/`;
-export const email = 'pratik.mane1299@gmail.com';
-export const name = 'Pratik Mane';
+export const email = "pratik.mane1299@gmail.com";
+export const name = "Pratik Mane";
 export const jobTitle = "Software Engineer";
-export const bio = jobTitle + ` | Football fan | Tech enthusiast | Building innovative
+export const bio =
+  jobTitle +
+  ` | Football fan | Tech enthusiast | Building innovative
 software solutions | Committed to excellence & continuous learning.`;
-export const url = 'https://pratikmane.netlify.app';
-export const githubUser = 'pratikmane1299';
-export const repo = 'portfolio';
+export const bioWithoutJobTitle = `| Football fan | Tech enthusiast | Building innovative
+software solutions | Committed to excellence & continuous learning.`;
+export const url = "https://pratikmane.netlify.app";
+export const githubUser = "pratikmane1299";
+export const repo = "portfolio";
 export const issuesUrl = `https://api.github.com/repos/${githubUser}/${repo}/issues?creator=${githubUser}&state=all`;
+export const blogDomain = "pratikmane.netlify.app";
 
 export const navLinks = [
   {
@@ -19,7 +24,7 @@ export const navLinks = [
   //   href: "/leetcode",
   //   label: "Leetcode",
   // },
-  { label: 'Blog', href: '/blog' }
+  { label: "Blog", href: "/blog" },
 ];
 
 export const work = [

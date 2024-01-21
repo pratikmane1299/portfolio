@@ -12,6 +12,7 @@ import Utterances from "@/app/components/Utterances";
 import Reactions from "@/app/components/Reactions";
 
 import "highlight.js/styles/github-dark-dimmed.css";
+import { blogDomain, name } from "@/data";
 
 type Props = {
   params: { slug: string };
@@ -40,14 +41,14 @@ export async function generateMetadata(
           `${env.SITE_URL}/api/og?title=${post.title}&date=${post.updatedAt}&page=blog`,
         ],
         type: "article",
-        authors: ["Pratik Mane"],
+        authors: [name],
       },
       twitter: {
         title: post.title,
         ...description,
         card: "summary_large_image",
         images: [
-          `${env.SITE_URL}/api/og?title=${post.title}&date=${post.createdAt}&page=blog`,
+          `${env.SITE_URL}/api/og?title=${post.title}&date=${post.updatedAt}&page=blog`,
         ],
       },
       alternates: {
