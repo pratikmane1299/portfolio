@@ -11,15 +11,15 @@ export default async function Sitemap(): Promise<MetadataRoute.Sitemap> {
   const sitemap = [
     {
       url: `${env.SITE_URL}/`,
-      lastModified: new Date().toString(),
+      lastModified: new Date().toISOString(),
     },
     {
       url: `${env.SITE_URL}/blog`,
-      lastModified: new Date().toString(),
+      lastModified: new Date().toISOString(),
     },
     ...allPosts.map((post) => ({
       url: `${env.SITE_URL}/blog/${post.slug}`,
-      lastModified: new Date(post.updatedAt).toString(),
+      lastModified: new Date(post.updatedAt).toISOString(),
     })),
   ];
 
