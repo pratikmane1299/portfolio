@@ -50,6 +50,9 @@ export const metadata: Metadata = {
     url: url,
     images: [`${env.SITE_URL}/api/og/`],
   },
+  verification: {
+    google: env.GOOGLE_VERIFICATION_ID, 
+  },
 };
 
 export default function PagesLayout({
