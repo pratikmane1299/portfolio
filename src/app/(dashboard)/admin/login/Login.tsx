@@ -42,13 +42,13 @@ export default function Login() {
     },
   });
 
-  function handleLogin(values: LoginFormType) {
+  async function handleLogin(values: LoginFormType) {
     if (
       values.username === env.NEXT_PUBLIC_ADMIN_USERNAME &&
       values.password === env.NEXT_PUBLIC_ADMIN_PASSWORD
     ) {
       setAuthState({ loggedIn: true });
-      router.push("/admin/blog-analytics");
+      await router.push("/admin/blog-analytics");
     } else {
       toast({ title: "Invalid username or password" });
     }
