@@ -13,7 +13,7 @@ export default function ProtectedRoutesLayout({
   const router = useRouter();
   const { authState } = useAuthContext();
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     if (!authState.loggedIn) return router.replace("/admin/login");
   }, [authState.loggedIn]);
 
