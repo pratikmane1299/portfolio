@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -31,6 +32,8 @@ export default function Login() {
   const { setAuthState } = useAuthContext();
   const { toast } = useToast();
 
+  const router = useRouter();
+
   const form = useForm<LoginFormType>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -45,6 +48,7 @@ export default function Login() {
       values.password === env.NEXT_PUBLIC_ADMIN_PASSWORD
     ) {
       setAuthState({ loggedIn: true });
+      router.push("/admin/blog-analytics");
     } else {
       toast({ title: "Invalid username or password" });
     }
