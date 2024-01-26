@@ -10,9 +10,7 @@ export default function AuthWrapper({ children }: React.PropsWithChildren) {
   const { authState } = useAuthContext();
 
   React.useLayoutEffect(() => {
-    console.log({
-      authState,
-    });
+    console.log(authState.loggedIn);
 
     if (!authState.loggedIn) {
       window.location.href = `${window.location.origin}/admin/login`;
