@@ -1,8 +1,8 @@
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight/lib";
-import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 import { slugify } from "@/utils";
 import { BlogFrontMatterType, BlogPostType, GithubIssueType } from "@/types";
@@ -46,13 +46,13 @@ async function parseIssue(issue: GithubIssueType): Promise<BlogPostType> {
       ? frontmatter.tags
       : frontmatter.tags.split(",").map((x) => x.trim());
 
-	const { url, total_count, ...emojis } = issue.reactions;
+  const { url, total_count, ...emojis } = issue.reactions;
 
   return {
     frontmatter,
     title,
     description,
-		issueNumber: issue.number,
+    issueNumber: issue.number,
     tags,
     content: issue.body,
     compiledContent: content,
@@ -74,7 +74,6 @@ async function parseIssue(issue: GithubIssueType): Promise<BlogPostType> {
 
 export async function getAllPosts() {
   try {
-    
     const blogPosts: BlogPostType[] = [];
     const res = await fetch(
       `${env.GITHUB_API_BASE_URL}/repos/${githubUser}/${repo}/issues?creator=${githubUser}&state=all`,
@@ -85,15 +84,18 @@ export async function getAllPosts() {
       }
     );
     const issues: GithubIssueType[] = await res.json();
-  
+
     if (Array.isArray(issues) && issues.length > 0) {
       for (let i = 0; i < issues.length; i++) {
         const issue = issues[i];
-  
+
         const isPublished = issue.labels?.find(
           (label: any) => label.name?.toLowerCase() === "published"
         );
-        if (issue.user?.login === githubUser && isPublished) {
+
+        const isIssue = !Object.hasOwn(issue, "pull_request");
+
+        if (issue.user?.login === githubUser && isIssue && isPublished) {
           const parsedIssue = await parseIssue(issue);
           blogPosts.push(parsedIssue);
         }
@@ -101,7 +103,7 @@ export async function getAllPosts() {
     }
     return blogPosts;
   } catch (error) {
-    console.log('error - ', error);
+    console.log("error - ", error);
     return [];
   }
 }

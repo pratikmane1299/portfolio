@@ -30,7 +30,7 @@ export default function Utterances({ issueNumber }: { issueNumber: number }) {
         isLoaded.current = false;
       }
     };
-  }, [utterancesDiv.current]);
+  }, [issueNumber]);
 
   function injectScript(element: HTMLDivElement, issueNumber: number) {
     const script = document.createElement("script");
