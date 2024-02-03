@@ -11,7 +11,8 @@ export default function AdminPanelHeader() {
   const { authState, setAuthState } = useAuthContext();
 
   function logout() {
-    setAuthState({ loggedIn: false });
+    setAuthState({ loggedIn: false, user: null });
+    localStorage.removeItem("token");
   }
 
   return (

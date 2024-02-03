@@ -18,12 +18,12 @@ import { Label } from "@/components/ui/label";
 import { env } from "@/env.mjs";
 import { useAuthContext } from "@/contexts/auth";
 import { useToast } from "@/components/ui/use-toast";
+import { useLogin } from "../_hooks/useAuth";
+import { Loader2 } from "lucide-react";
 
 const loginSchema = z.object({
   username: z.string().min(1, { message: "Username is required" }),
-  password: z
-    .string()
-    .min(8, { message: "Password should be minimum 8 chars long" }),
+  password: z.string(),
 });
 
 type LoginFormType = z.infer<typeof loginSchema>;
@@ -31,6 +31,8 @@ type LoginFormType = z.infer<typeof loginSchema>;
 export default function Login() {
   const { setAuthState } = useAuthContext();
   const { toast } = useToast();
+
+  const { isLoading, mutate } = useLogin();
 
   const router = useRouter();
 
@@ -42,16 +44,26 @@ export default function Login() {
     },
   });
 
-  async function handleLogin(values: LoginFormType) {
-    if (
-      values.username === env.NEXT_PUBLIC_ADMIN_USERNAME &&
-      values.password === env.NEXT_PUBLIC_ADMIN_PASSWORD
-    ) {
-      setAuthState({ loggedIn: true });
-      await router.push("/admin/blog-analytics");
-    } else {
-      toast({ title: "Invalid username or password" });
-    }
+  function handleLogin(values: LoginFormType) {
+    mutate(values, {
+      onSuccess: async (data) => {
+        console.log("data- ", data);
+        localStorage.setItem("token", data.token);
+        await router.push("/admin/blog-analytics");
+      },
+      onError: (error: any) => {
+        toast({ title: error?.message });
+      },
+    });
+    // if (
+    //   values.username === env.NEXT_PUBLIC_ADMIN_USERNAME &&
+    //   values.password === env.NEXT_PUBLIC_ADMIN_PASSWORD
+    // ) {
+    //   setAuthState({ loggedIn: true });
+    //   await router.push("/admin/blog-analytics");
+    // } else {
+    //   toast({ title: "Invalid username or password" });
+    // }
   }
 
   return (
@@ -94,6 +106,9 @@ export default function Login() {
 
                 <div className="w-full flex justify-end">
                   <Button type="submit" variant="default">
+                    {isLoading && (
+                      <Loader2 className="animate-spin h-4 w-4 mr-2" />
+                    )}
                     Login
                   </Button>
                 </div>
