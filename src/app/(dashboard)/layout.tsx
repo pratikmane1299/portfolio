@@ -32,12 +32,12 @@ export default function AdminLayout({
       <body style={firaCode.style}>
         <Providers>
           <AuthProvider>
-            <header>
+            {/* <header>
               <AdminPanelHeader />
             </header>
-            <main className="w-full px-6 lg:max-w-4xl lg:mx-auto">
+            <main className="w-full px-6 lg:max-w-4xl lg:mx-auto"> */}
               {children}
-            </main>
+            {/* </main> */}
             <Toaster />
           </AuthProvider>
         </Providers>

@@ -4,24 +4,29 @@ import React from "react";
 import { useRouter } from "next/navigation";
 
 import { useAuthContext } from "@/contexts/auth";
+import { useGetAuthUser } from "../_hooks/useAuth";
+import Spinner from "@/app/components/Spinner";
 
 export default function AuthWrapper({ children }: React.PropsWithChildren) {
   const router = useRouter();
   const { authState } = useAuthContext();
 
-  React.useLayoutEffect(() => {
-    console.log(authState.loggedIn);
+  const { isLoading } = useGetAuthUser();
 
-    if (!authState.loggedIn) {
+  React.useLayoutEffect(() => {
+    if (!isLoading && !authState.loggedIn) {
       window.location.href = `${window.location.origin}/admin/login`;
     }
-  }, [authState.loggedIn]);
+  }, [isLoading, authState.loggedIn]);
+
+  if (isLoading)
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <Spinner />
+      </div>
+    );
 
   if (!authState.loggedIn) return null;
-
-  // if (window && !authState.loggedIn) {
-  //   return (window.location.href = `${window.location.origin}/admin/login`);
-  // }
 
   return children;
 }

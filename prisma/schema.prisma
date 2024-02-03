@@ -61,3 +61,10 @@ model PostViews {
   views      Int
   created_at DateTime @default(now())
 }
+
+model User {
+  id         Int      @id @default(autoincrement())
+  username   String   @db.VarChar(255)
+  password   String   @db.VarChar(255)
+  created_at DateTime @default(now())
+}

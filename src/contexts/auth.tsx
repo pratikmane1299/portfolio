@@ -2,8 +2,14 @@
 
 import React, { useContext } from "react";
 
+type User = {
+  id: number;
+  username: string;
+}
+
 type AuthStateType = {
   loggedIn: boolean;
+  user: User | null;
 };
 
 type AuthContextType = {
@@ -12,14 +18,17 @@ type AuthContextType = {
 };
 
 const AuthContext = React.createContext<AuthContextType>({
-  authState: {loggedIn: false},
+  authState: {loggedIn: false, user: null},
   setAuthState: () => {},
 });
 
 export default function AuthProvider({
   children,
 }: React.PropsWithChildren<{}>) {
-  const [authState, setAuthState] = React.useState({ loggedIn: false });
+  const [authState, setAuthState] = React.useState<AuthStateType>({
+    loggedIn: false,
+    user: null,
+  });
 
   return (
     <AuthContext.Provider value={{ authState, setAuthState }}>

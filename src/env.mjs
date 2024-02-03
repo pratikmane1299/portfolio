@@ -15,6 +15,7 @@ export const env = createEnv({
     GITHUB_API_BASE_URL: z.string().url(),
     SOME_SECRET_TOKEN: z.string(),
     GOOGLE_VERIFICATION_ID: z.string(),
+    JWT_TOKEN_SECRET: z.string(),
   },
   client: {
     NEXT_PUBLIC_SOME_SECRET_TOKEN: z.string(),
