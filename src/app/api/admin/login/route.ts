@@ -55,8 +55,6 @@ export async function POST(request: Request) {
   // generate token
   const token = signJWT({ id: user?.id, username: user?.username });
 
-  console.log("token - ", token);
-
   // return token here...
   return NextResponse.json({ success: true, data: { token } });
 }

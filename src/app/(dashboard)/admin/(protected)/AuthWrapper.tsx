@@ -14,8 +14,6 @@ export default function AuthWrapper({ children }: React.PropsWithChildren) {
   const { isLoading } = useGetAuthUser();
 
   React.useLayoutEffect(() => {
-    console.log(authState.loggedIn);
-
     if (!isLoading && !authState.loggedIn) {
       window.location.href = `${window.location.origin}/admin/login`;
     }
