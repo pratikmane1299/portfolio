@@ -6,6 +6,7 @@ import { DatesFilterType } from "@/types";
 type QueryKeyType = { queryKey: QueryKey };
 
 export async function getDaywiseViews({ queryKey }: QueryKeyType) {
+  const token = localStorage.getItem("token");
   const date = queryKey[1] as DatesFilterType;
 
   const newSearchParams = new URLSearchParams({ date });
@@ -17,6 +18,7 @@ export async function getDaywiseViews({ queryKey }: QueryKeyType) {
         headers: {
           "some-secret": env.NEXT_PUBLIC_SOME_SECRET_TOKEN,
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -35,6 +37,8 @@ export async function getPostWiseViews({ queryKey }: QueryKeyType) {
 
     const newSearchParams = new URLSearchParams({ date });
 
+    const token = localStorage.getItem("token");
+
     const res = await fetch(
       `/api/blog/analytics/post-wise?${newSearchParams.toString()}`,
       {
@@ -42,6 +46,7 @@ export async function getPostWiseViews({ queryKey }: QueryKeyType) {
         headers: {
           "some-secret": env.NEXT_PUBLIC_SOME_SECRET_TOKEN,
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -55,11 +60,14 @@ export async function getPostWiseViews({ queryKey }: QueryKeyType) {
 }
 
 export async function getStats() {
+  const token = localStorage.getItem("token");
+
   const res = await fetch(`/api/blog/analytics/stats`, {
     method: "GET",
     headers: {
       "some-secret": env.NEXT_PUBLIC_SOME_SECRET_TOKEN,
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
   });
 
