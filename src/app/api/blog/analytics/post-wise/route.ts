@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 
 import prisma from "@/lib/prisma";
-import { env } from "@/env.mjs";
 import { DatesFilterType, datesEnum } from "@/types";
 import { getToDateAndFromDateFromDateFilter } from "@/utils";
+import withAuth from "@/middlewares/auth";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -16,10 +16,8 @@ type PostWiseBlogViewsQueryType = {
   slug: string;
 };
 
-export async function GET(request: Request) {
-  try {
-    const secret = request.headers.get("some-secret");
-
+export const GET = withAuth(
+  async (request: Request, response: NextResponse) => {
     const url = new URL(request.url);
     const searchParams = new URLSearchParams(url.search);
     const selectedDateFilter = searchParams.get("date") as DatesFilterType;
@@ -32,14 +30,6 @@ export async function GET(request: Request) {
       );
     }
 
-    if (!secret) {
-      return NextResponse.json({ success: false }, { status: 401 });
-    }
-
-    if (env.SOME_SECRET_TOKEN !== secret) {
-      return NextResponse.json({ success: false }, { status: 401 });
-    }
-
     const { fromDate, toDate } =
       getToDateAndFromDateFromDateFilter(selectedDateFilter);
 
@@ -48,11 +38,8 @@ export async function GET(request: Request) {
     >`SELECT slug, count(views)::int as views from "PostViews" WHERE created_at::timestamp between ${fromDate}::timestamp and ${toDate}::timestamp  GROUP BY slug`;
 
     return NextResponse.json({ success: true, data: results });
-  } catch (error) {
-    console.log("error");
-    return NextResponse.json({ success: true, data: [] }, { status: 400 });
   }
-}
+);
 
 export async function OPTIONS(req: Request) {
   return new Response(null, {
