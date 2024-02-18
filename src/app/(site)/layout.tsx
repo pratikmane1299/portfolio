@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Fira_Code } from "next/font/google";
 import Script from "next/script";
 
-import { bio, jobTitle, name, url } from "@/data";
+import { bio, jobTitle, name } from "@/data";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -25,20 +25,20 @@ export const metadata: Metadata = {
     default: name,
   },
   description,
-  metadataBase: new URL(`${url}`),
+  metadataBase: new URL(`${env.SITE_URL}`),
   alternates: {
     canonical: "/",
     types: {
       "application/rss+xml": `${env.SITE_URL}/feed.xml`,
     },
   },
-  manifest: `${url}/site.webmanifest`,
+  manifest: `${env.SITE_URL}/site.webmanifest`,
   twitter: {
     card: "summary_large_image",
     creator: "@Prateek88900",
     title: name,
     description,
-    site: url,
+    site: env.SITE_URL,
     images: [`${env.SITE_URL}/api/og/`],
   },
   openGraph: {
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     siteName: "Pratik Mane",
     locale: "en-US",
     type: "website",
-    url: url,
+    url: env.SITE_URL,
     images: [`${env.SITE_URL}/api/og/`],
   },
   verification: {
