@@ -145,7 +145,7 @@ export default async function BlogPost({
           </div>
         )}
         <div className="mb-5 py-4 ">
-          <Reactions reactions={post.reactions} />
+          <Reactions reactions={post.reactions} postTitle={post.title} />
         </div>
 
         <Utterances issueNumber={post.issueNumber} />

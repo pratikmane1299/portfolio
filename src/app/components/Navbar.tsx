@@ -20,7 +20,7 @@ function Navbar() {
         </Link>
 
         <ul className="hidden md:flex items-center justify-between space-x-3">
-          {navLinks.map(({ href, label }, idx) => (
+          {navLinks.map(({ href, label, slug }, idx) => (
             <li
               key={idx}
               className={`p-2 text-sm tracking-wide font-medium rounded-md cursor-pointer transition-colors duration-500 ease-in-out ${
@@ -28,6 +28,9 @@ function Navbar() {
                   ? "text-dracula-dark-50 bg-dracula-darker-800 underline"
                   : "text-dracula-darker-100 hover:text-dracula-dark-50 hover:underline hover:bg-dracula-darker-800"
               }`}
+              id={`desktop-nav-link-${slug}`}
+              data-umami-event="Desktop nav link click"
+              data-umami-event-slug={slug}
             >
               <Link href={href}>{label}</Link>
             </li>
@@ -35,7 +38,12 @@ function Navbar() {
           <li
             className={`p-2 text-sm tracking-wide font-medium rounded-md cursor-pointer transition-colors duration-500 ease-in-out text-dracula-darker-100 hover:text-dracula-dark-50 hover:underline hover:bg-dracula-darker-800`}
           >
-            <Link target="_blank" href={"/resume.pdf"}>
+            <Link
+              id="desktop-nav-download-resume"
+              target="_blank"
+              href={"/resume.pdf"}
+              data-umami-event="Desktop nav download resume"
+            >
               Resume
             </Link>
           </li>
@@ -84,7 +92,7 @@ function Navbar() {
           <div className="md:hidden fixed bg-gray-500 bg-opacity-75 transition-opacity z-10"></div>
           <div className="md:hidden absolute w-full flex justify-center px-4 z-30">
             <ul className="w-full flex flex-col bg-dracula-darker-800 rounded-md shadow-2xl">
-              {navLinks.map(({ label, href }, idx) => (
+              {navLinks.map(({ label, href, slug }, idx) => (
                 <li key={idx} className="w-full px-4 py-3">
                   <Link
                     href={href}
@@ -93,6 +101,9 @@ function Navbar() {
                         ? "text-dracula-dark-50"
                         : "text-dracula-darker-100 hover:text-dracula-dark-50"
                     }`}
+                    id={`mobile-nav-link-${slug}`}
+                    data-umami-event="Mobile nav link click"
+                    data-umami-event-slug={slug}
                     onClick={() => toggleNav(false)}
                   >
                     {label}
@@ -101,9 +112,11 @@ function Navbar() {
               ))}
               <li className="w-full px-4 py-3">
                 <Link
+                  id="mobile-nav-download-resume"
                   href={"/resume.pdf"}
                   target="_blank"
                   className={`w-full text-xs font-medium tracking-wide leading-6 text-dracula-darker-100 hover:text-dracula-dark-50`}
+                  data-umami-event="Mobile nav download resume"
                   onClick={() => toggleNav(false)}
                 >
                   Resume

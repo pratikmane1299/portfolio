@@ -13,11 +13,19 @@ const emojiMap: Record<any, string> = {
 
 export default function Reactions({
   reactions,
+  postTitle,
 }: {
   reactions: BlogReactionsType;
+  postTitle: string;
 }) {
   return (
-    <a href={reactions.url} target="_blank" className="text-sm md:text-base font-medium">
+    <a
+      href={reactions.url}
+      target="_blank"
+      className="text-sm md:text-base font-medium"
+      data-umami-event="Leave reaction on blog"
+      data-umami-event-blog={postTitle}
+    >
       <span className="mr-2">Reactions:</span>
       {reactions.total_count > 0
         ? Object.keys(reactions?.emojis)?.map((reaction: any, idx: number) => {

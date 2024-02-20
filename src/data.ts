@@ -19,12 +19,13 @@ export const navLinks = [
   {
     href: "/",
     label: "Home",
+    slug: "home",
   },
   // {
   //   href: "/leetcode",
   //   label: "Leetcode",
   // },
-  { label: "Blog", href: "/blog" },
+  { label: "Blog", href: "/blog", slug: "blog" },
 ];
 
 export const work = [

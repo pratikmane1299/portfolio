@@ -31,7 +31,13 @@ function Projects() {
 
             <div className="mt-2 md:mt-4 flex items-center space-x-3">
               {project.demoUrl && (
-                <ExternalLink href={project.demoUrl}>Visit</ExternalLink>
+                <ExternalLink
+                  href={project.demoUrl}
+                  data-umami-event="Visit project"
+                  data-umami-event-project={project.name}
+                >
+                  Visit
+                </ExternalLink>
               )}
               {project.demoUrl && project?.repoName && (
                 <span className="mr-1 md:mx-2 inline-block top-1/2 transform -translate-y-1/2 h-1 w-1 rounded-full bg-gray-400"></span>
@@ -39,6 +45,8 @@ function Projects() {
               {project?.repoName && (
                 <ExternalLink
                   href={`${getGithubProfileUrl()}${project.repoName}`}
+                  data-umami-event="View project code"
+                  data-umami-event-project={project.name}
                 >
                   View code
                 </ExternalLink>

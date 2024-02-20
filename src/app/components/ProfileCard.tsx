@@ -46,6 +46,8 @@ function ProfileCard() {
           href={`mailto:${email}`}
           rel="noopener noreferrer"
           className="p-1 md:p-2 bg-gray-600 rounded md:rounded-md cursor-pointer hover:opacity-90"
+          id="connect-via-mail"
+          data-umami-event="Connnect via Mail"
         >
           <Inbox />
         </a>
@@ -54,6 +56,8 @@ function ProfileCard() {
           target="_blank"
           rel="noopener noreferrer"
           className="p-1 md:p-2 bg-blue-400 rounded md:rounded-md cursor-pointer hover:opacity-90"
+          id="twitter-profile"
+          data-umami-event="View Twitter Profile"
         >
           <TwitterIcon />
         </a>
@@ -62,6 +66,8 @@ function ProfileCard() {
           target="_blank"
           rel="noopener noreferrer"
           className="p-1 md:p-2 bg-gray-600 rounded md:rounded-md cursor-pointer hover:opacity-90"
+          id="github-profile"
+          data-umami-event="View Github Profile"
         >
           <GithubIcon />
         </a>
