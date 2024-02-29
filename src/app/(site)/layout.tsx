@@ -32,7 +32,6 @@ export const metadata: Metadata = {
       "application/rss+xml": `${env.SITE_URL}/feed.xml`,
     },
   },
-  manifest: `${env.SITE_URL}/site.webmanifest`,
   twitter: {
     card: "summary_large_image",
     creator: "@Prateek88900",
