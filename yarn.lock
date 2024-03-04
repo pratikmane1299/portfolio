@@ -3827,6 +3827,13 @@ next-mdx-remote@^4.4.1:
     vfile "^5.3.0"
     vfile-matter "^3.0.1"
 
+next-nprogress-bar@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/next-nprogress-bar/-/next-nprogress-bar-2.3.1.tgz#898c9972c11562bc040876f27fba17848ba1d1b8"
+  integrity sha512-fg0kY6vfndoBbCFJ5O1GnVj7UQ4Xc0h1ePSQ7HoUY5Iu2GL5fZJlSlGklf5ozcPpYQWC7roQ/GdP7OXm2KvCcQ==
+  dependencies:
+    nprogress "^0.2.0"
+
 next@14.0.5-canary.55@^14.0.4:
   version "14.0.5-canary.55"
   resolved "https://registry.yarnpkg.com/next/-/next-14.0.5-canary.55.tgz#4914ec0f32d057591e6a76a2221c7e13f2358a74"
@@ -3907,6 +3914,11 @@ npmlog@^5.0.1:
     console-control-strings "^1.1.0"
     gauge "^3.0.0"
     set-blocking "^2.0.0"
+
+nprogress@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/nprogress/-/nprogress-0.2.0.tgz#cb8f34c53213d895723fcbab907e9422adbcafb1"
+  integrity sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==
 
 object-assign@^4.0.1, object-assign@^4.1.1:
   version "4.1.1"
