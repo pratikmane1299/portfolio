@@ -72,8 +72,9 @@ async function parseIssue(issue: GithubIssueType): Promise<BlogPostType> {
   };
 }
 
-export async function getAllPosts() {
+export async function getAllPosts(options?: {limit: number}) {
   try {
+    const {limit = 10} = options || {};
     const blogPosts: BlogPostType[] = [];
     const res = await fetch(
       `${env.GITHUB_API_BASE_URL}/repos/${githubUser}/${repo}/issues?creator=${githubUser}&state=all`,
@@ -101,7 +102,7 @@ export async function getAllPosts() {
         }
       }
     }
-    return blogPosts;
+    return blogPosts.slice(0, limit);
   } catch (error) {
     console.log("error - ", error);
     return [];

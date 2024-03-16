@@ -1,4 +1,5 @@
 export const twitterProfileURL = `https://twitter.com/Prateek88900`;
+export const peerlistProfileURL = `https://peerlist.io/prateekmane`;
 export const githubProfileURL = `https://github.com/pratikmane1299/`;
 export const email = "pratik.mane1299@gmail.com";
 export const name = "Pratik Mane";

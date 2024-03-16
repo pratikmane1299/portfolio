@@ -4,6 +4,7 @@ import React from "react";
 import Work from "../components/Work";
 import Projects from "../components/Projects";
 import ProfileCard from "../components/ProfileCard";
+import RecentBlogs from "../components/RecentBlogs";
 // import Leetcode from "./components/Leetcode";
 
 export default async function Home() {
@@ -12,6 +13,7 @@ export default async function Home() {
       {/* bio */}
       <ProfileCard />
       {/* work experience */}
+      <RecentBlogs />
       <Work />
       {/* projects */}
       <Projects />
