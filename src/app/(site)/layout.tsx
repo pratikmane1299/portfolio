@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fira_Code } from "next/font/google";
+import { Fira_Code, Poppins } from "next/font/google";
 import Script from "next/script";
 
 import { bio, jobTitle, name } from "@/data";
@@ -16,6 +16,8 @@ const firaCode = Fira_Code({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
 });
+
+const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500"] })
 
 const description = `${jobTitle} ${bio}`;
 
@@ -50,7 +52,7 @@ export const metadata: Metadata = {
     images: [`${env.SITE_URL}/api/og/`],
   },
   verification: {
-    google: env.GOOGLE_VERIFICATION_ID, 
+    google: env.GOOGLE_VERIFICATION_ID,
   },
 };
 
@@ -72,7 +74,8 @@ export default function PagesLayout({
       <body>
         <main
           className="w-full md:max-w-3xl md:mx-auto flex h-screen min-h-screen flex-col"
-          style={firaCode.style}
+          // style={firaCode.style}
+          style={poppins.style}
         >
           <Providers>
             <header>

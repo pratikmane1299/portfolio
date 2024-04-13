@@ -18,7 +18,7 @@ function ExternalLink({
     <a
       target="_blank"
       rel="noopener noreferrer"
-      className={`text-xs md:text-sm font-medium text-dracula-pink-400 border-b border-transparent hover:border-dracula-pink-400 ${className}`}
+      className={`text-xs md:text-sm font-medium text-primary-foreground border-b-2 border-transparent hover:border-primary-foreground ${className}`}
       {...rest}
     >
       {children}

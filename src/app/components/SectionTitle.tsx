@@ -10,7 +10,7 @@ function SectionTitle({
   return (
     <h3
       className={classNames(
-        "text-lg md:text-xl font-medium md:tracking-wide",
+        "text-lg md:text-xl font-medium md:tracking-wide text-secondary-foreground",
         marginBottom ? "mb-4 md:mb-6 " : "",
         className
       )}

@@ -4,6 +4,7 @@ import { getGithubProfileUrl } from "@/utils";
 import SectionTitle from "./SectionTitle";
 import Tag from "./Tag";
 import ExternalLink from "./ExternalLink";
+import { Badge } from "@/components/ui/badge";
 
 function Projects() {
   return (
@@ -13,12 +14,12 @@ function Projects() {
         {projects.map((project, idx) => (
           <div
             key={idx}
-            className="p-4 w-full flex flex-col bg-dracula-darker-800 rounded-md"
+            className="p-4 w-full flex flex-col bg-secondary rounded-md"
           >
-            <h5 className="mb-1 md:mb-2 text-base md:text-lg font-medium text-dracula-dark-50">
+            <h5 className="mb-1 md:mb-2 text-base md:text-lg font-medium text-secondary-foreground">
               {project.name}
             </h5>
-            <p className="mb-1 md:mb-2 text-xs md:text-sm font-medium text-gray-300">
+            <p className="mb-1 md:mb-2 text-xs md:text-sm font-medium text-muted-foreground">
               {project.description}
             </p>
 
@@ -26,7 +27,9 @@ function Projects() {
               {project.stack &&
                 project.stack
                   .split(",")
-                  .map((tag, jdx) => <Tag key={jdx} tag={tag} />)}
+                  .map((tag, jdx) => <Badge key={jdx}>
+                    {tag}
+                  </Badge>)}
             </div>
 
             <div className="mt-2 md:mt-4 flex items-center space-x-3">

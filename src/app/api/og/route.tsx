@@ -42,11 +42,11 @@ export async function GET(request: Request) {
               <div tw="flex absolute bottom-10 left-10 text-gray-200">{blogDomain}</div>
             </div>
 
-              <img
-                src="https://avatars.githubusercontent.com/u/30666584?s=400&u=ddd8340a1e7f924f1af643d67733f36c6e93c0e2&v=4"
-                alt="Pratik Mane's portfolio"
-                tw="absolute top-10 right-10 bg-gray-800 h-[50px] w-[50px] rounded-full "
-              />
+            <img
+              src="https://avatars.githubusercontent.com/u/30666584?s=400&u=ddd8340a1e7f924f1af643d67733f36c6e93c0e2&v=4"
+              alt="Pratik Mane's portfolio"
+              tw="absolute top-10 right-10 bg-gray-800 h-[50px] w-[50px] rounded-full "
+            />
           </div>
         ) : (
           <div tw="h-full flex flex-col items-center justify-center">

@@ -81,7 +81,7 @@ module.exports = {
     },
   },
   plugins: [
-    require("tailwind-dracula")("dracula"),
+    // require("tailwind-dracula")("dracula"),
     require("@tailwindcss/typography"),
     require("tailwindcss-animate"),
   ],

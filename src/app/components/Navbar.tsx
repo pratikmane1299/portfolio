@@ -14,7 +14,7 @@ function Navbar() {
       <nav className="sticky top-4 z-10 px-4 py-4 w-full flex items-center justify-between">
         <Link
           href={"/"}
-          className="text-xl md:text-2xl font-medium tracking-wider leading-4"
+          className="text-xl md:text-2xl font-medium tracking-wider leading-4 text-primary"
         >
           {"<Pratik />"}
         </Link>
@@ -23,11 +23,10 @@ function Navbar() {
           {navLinks.map(({ href, label, slug }, idx) => (
             <li
               key={idx}
-              className={`p-2 text-sm tracking-wide font-medium rounded-md cursor-pointer transition-colors duration-500 ease-in-out ${
-                pathname === href
-                  ? "text-dracula-dark-50 bg-dracula-darker-800 underline"
-                  : "text-dracula-darker-100 hover:text-dracula-dark-50 hover:underline hover:bg-dracula-darker-800"
-              }`}
+              className={`p-2 text-sm tracking-wide font-medium rounded-md cursor-pointer transition-colors duration-500 ease-in-out ${pathname === href
+                  ? "text-secondary-foreground bg-accent underline"
+                  : "text-secondary-foreground hover:text-primary hover:underline hover:bg-secondary"
+                }`}
               id={`desktop-nav-link-${slug}`}
               data-umami-event="Desktop nav link click"
               data-umami-event-slug={slug}
@@ -36,7 +35,7 @@ function Navbar() {
             </li>
           ))}
           <li
-            className={`p-2 text-sm tracking-wide font-medium rounded-md cursor-pointer transition-colors duration-500 ease-in-out text-dracula-darker-100 hover:text-dracula-dark-50 hover:underline hover:bg-dracula-darker-800`}
+            className={`p-2 text-sm tracking-wide font-medium rounded-md cursor-pointer transition-colors duration-500 ease-in-out text-secondary-foreground hover:text-primary hover:underline hover:bg-secondary`}
           >
             <Link
               id="desktop-nav-download-resume"
@@ -96,11 +95,10 @@ function Navbar() {
                 <li key={idx} className="w-full px-4 py-3">
                   <Link
                     href={href}
-                    className={`w-full text-xs font-medium tracking-wide leading-6 ${
-                      pathname === href
+                    className={`w-full text-xs font-medium tracking-wide leading-6 ${pathname === href
                         ? "text-dracula-dark-50"
                         : "text-dracula-darker-100 hover:text-dracula-dark-50"
-                    }`}
+                      }`}
                     id={`mobile-nav-link-${slug}`}
                     data-umami-event="Mobile nav link click"
                     data-umami-event-slug={slug}

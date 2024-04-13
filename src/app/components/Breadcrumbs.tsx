@@ -18,7 +18,7 @@ export default function Breadcrumbs({ pages }: BreadcrumbsPropsType) {
           const isCurrentPage = idx === pages.length - 1;
 
           return (
-            <li key={idx} className="py-1 text-xs font-light mr-2 leading-5">
+            <li key={idx} className="py-1 text-xs font-light mr-2 leading-5 text-secondary-foreground">
               {isCurrentPage ? (
                 <span>{page.label}</span>
               ) : (
