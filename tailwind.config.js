@@ -76,7 +76,7 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        fadein: "fade-in 0.8s forwards 0.8s",
+        fadein: "fade-in forwards 0.8s",
       },
     },
   },

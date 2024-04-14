@@ -15,6 +15,7 @@ import "../globals.css";
 const firaCode = Fira_Code({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
+  display: "swap",
 });
 
 const description = `${jobTitle} ${bio}`;
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
     images: [`${env.SITE_URL}/api/og/`],
   },
   verification: {
-    google: env.GOOGLE_VERIFICATION_ID, 
+    google: env.GOOGLE_VERIFICATION_ID,
   },
 };
 

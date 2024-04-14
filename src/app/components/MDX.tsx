@@ -10,7 +10,7 @@ export const components: MDXComponents = {
   p: ({ className, ...props }: any) => (
     <p
       className={classNames(
-        "text-xs sm:text-sm text-white tracking-wide font-normal break-words whitespace-break-spaces leading-7 [&:not(:first-child)]:mt-6",
+        "text-xs sm:text-[14px] text-white tracking-wide font-normal break-words whitespace-break-spaces leading-8 [&:not(:first-child)]:mt-6",
         className
       )}
       {...props}
@@ -27,7 +27,7 @@ export const components: MDXComponents = {
   ),
   li: ({ className, ...props }: any) => (
     <li
-      className={classNames("mt-1 text-xs sm:text-sm text-white", className)}
+      className={classNames("mt-1 text-xs sm:text-[14px] leading-7 text-white", className)}
       {...props}
     />
   ),
@@ -51,7 +51,7 @@ export const components: MDXComponents = {
       {...props}
     />
   ),
-  code: ({ className = '' ,...props}) => (
+  code: ({ className = '', ...props }) => (
     <code className={classNames(className, 'p-1 bg-dracula-dark-600 rounded md:rounded-md font-normal after:content-none before:content-none')} {...props} />
   ),
   pre: Code,
@@ -113,7 +113,7 @@ export const components: MDXComponents = {
       {...props}
     />
   ),
-  Details: ({summary, children, ...props}: any) => {
+  Details: ({ summary, children, ...props }: any) => {
     return (
       <div className="p-4 bg-gray-900 rounded md:rounded-md cursor-pointer">
         <details {...props}>

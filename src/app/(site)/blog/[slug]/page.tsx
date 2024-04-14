@@ -113,7 +113,7 @@ export default async function BlogPost({
 
         {post.description && (
           <div className="mt-5 flex items-center space-x-2">
-            <p className="mt-3 text-sm md:text-base ">
+            <p className="mt-3 text-xs md:text-sm leading-8">
               {post.description.split(".")[0]}.
             </p>
           </div>

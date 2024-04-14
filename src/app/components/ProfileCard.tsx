@@ -16,7 +16,7 @@ import TwitterIcon from "./Twitter";
 import GithubIcon from "./Github";
 import Peerlist from "./Peerlist";
 
-const raleway = Raleway({ subsets: ["latin"], weight: ["600"] });
+const raleway = Raleway({ subsets: ["latin"], weight: ["600"], display: "swap" });
 
 function ProfileCard() {
   return (
