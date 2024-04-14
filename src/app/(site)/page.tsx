@@ -14,9 +14,9 @@ export default async function Home() {
       <ProfileCard />
       {/* work experience */}
       <RecentBlogs />
-      <Work />
+      {/* <Work /> */}
       {/* projects */}
-      <Projects />
+      {/* <Projects /> */}
       {/* leetcode */}
       {/* <ErrorBoundary
         fallback={
