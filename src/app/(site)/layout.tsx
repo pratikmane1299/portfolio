@@ -65,7 +65,7 @@ export default function PagesLayout({
       <head>
         {process.env.NODE_ENV === "production" && (
           <Script
-            src="https://umami-analytics-service.onrender.com/script.js"
+            src="https://umami-analytics.pratikmane.site/script.js"
             data-website-id={env.ANALYTICS_WEBSITE_ID}
           ></Script>
         )}
